@@ -26,5 +26,20 @@ namespace WebApplication.Controllers.BackEnd
         {
             return Json(adminDB.Add(user), JsonRequestBehavior.AllowGet);
         }
+        [HttpPost]
+        public JsonResult UpdateAdministrators(Users user)
+        {
+            return Json(adminDB.Update(user), JsonRequestBehavior.AllowGet);
+        }
+        [HttpGet]
+        public JsonResult DeleteAdministrators(int Id)
+        {
+            return Json(adminDB.Delete(Id), JsonRequestBehavior.AllowGet);
+        }
+        
+        public JsonResult ListAdministrators()
+        {
+            return Json(adminDB.ListAll(), JsonRequestBehavior.AllowGet);
+        }
     }
 }

@@ -1,1 +1,98 @@
 ﻿
+
+
+<div class="content-wrapper">
+    <!-- Content -->
+    <h3 class="card-header  text-center"><b>CẬP NHẬT TÀI KHOẢN QUẢN TRỊ VIÊN</b></h3>
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <!-- Basic Bootstrap Table -->
+        <div class="card">
+            <div class="table-responsive text-nowrap">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th width="2%">STT</th>
+                            <th>Tài khoản</th>
+                            <th>Mật khẩu</th>
+                            <th>Hành động</th>
+                        </tr>
+                    </thead>
+                    <tbody class=" _RenderItem table-border-bottom-0">
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!--/ Basic Bootstrap Table -->
+        <!-- / Content -->
+    </div>
+    <button></button>
+</div>
+<!-- / Layout page -->
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+
+<script>
+    $(document).ready(function () {
+        loadData();
+    });
+
+    //Load Data function  
+    function loadData() {
+        $.ajax({
+            url: "/BAdministrator/ListAdministrators",
+            type: "GET",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                var html = '';
+                $.each(result, function (key, item) {
+                    html += `<tr>
+                            <td>${key+1}</td>
+                            <td><input class="form-control" type="text" id="${"username"}${item.Id}" value="${item.username}" /></td>
+                            <td><input class="form-control" type="password" id="${"password"}${item.Id}" value="${item.password}" /></td>
+                            <td><button class="btn btn-success" onclick="return Update(${item.Id})" >Cập nhật</button></td>
+                        </tr>`;
+                });
+                $('._RenderItem').html(html);
+            },
+            error: function (errormessage) {
+                alert(errormessage.responseText);
+            }
+        });
+    }
+    //Add Data Function   
+    function Update(Id) {
+        //var res = validate();
+        //if (res == false) {
+        //    return false;
+        //}
+        var uname = $('#username' + Id).val();
+        var pword = $('#password' + Id).val();
+        var empObj = {
+            Id: Id,
+            username: uname,
+            password: pword
+,
+        };
+        $.ajax({
+            url: "/BAdministrator/UpdateAdministrators",
+            data: JSON.stringify(empObj),
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                debugger;
+                loadData();
+
+                if (result = 1) {
+                    alert("Thành công");
+                } else {
+                    alert("Không thành công");
+                }
+            },
+            error: function (errormessage) {
+                alert(errormessage.responseText);
+            }
+        });
+    }
+</script>

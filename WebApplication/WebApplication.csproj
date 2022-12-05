@@ -121,7 +121,9 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="BackEnd\AdministratorsDB.cs" />
+    <Compile Include="BackEnd\ProductsDB.cs" />
     <Compile Include="Controllers\BackEnd\BAdministratorController.cs" />
+    <Compile Include="Controllers\BackEnd\BProductController.cs" />
     <Compile Include="Controllers\FontEnd\FHomeController.cs" />
     <Compile Include="FontEnd\ProductsDB.cs" />
     <Compile Include="Global.asax.cs">
@@ -357,6 +359,7 @@
     <Content Include="Content\vendor\fonts\boxicons\boxicons.ttf" />
     <Content Include="Content\vendor\fonts\boxicons\boxicons.woff" />
     <Content Include="Content\vendor\fonts\boxicons\boxicons.woff2" />
+    <Content Include="Controllers\BackEnd\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -395,6 +398,14 @@
     <Content Include="Views\BAdministrator\HomePage.cshtml" />
     <Content Include="Views\BAdministrator\CreateAdministrators.cshtml" />
     <Content Include="Views\BAdministrator\EditAdministrators.cshtml" />
+    <Content Include="Views\BAdministrator\DeleteAdministrators.cshtml" />
+    <Content Include="Views\BAdministrator\ShowAdministrators.cshtml" />
+    <Content Include="Views\BProduct\Index.cshtml" />
+    <Content Include="Views\BProduct\ShowProducts.cshtml" />
+    <Content Include="Views\BProduct\EditProducts.cshtml" />
+    <Content Include="Views\BProduct\CreateProducts.cshtml" />
+    <Content Include="Views\BProduct\ProductPortfolio.cshtml" />
+    <Content Include="Views\BProduct\DeleteProducts.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
