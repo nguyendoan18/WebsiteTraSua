@@ -44,5 +44,11 @@ namespace WebApplication.Controllers.FontEnd
         {
             return Json(proDB.ListAll(), JsonRequestBehavior.AllowGet);
         }
+        [HttpGet]
+        public ActionResult Productdetails(int Id)
+        {
+            var Product = proDB.ListAll().Find(x => x.Id.Equals(Id));
+            return View(Product);
+        }
     }
 }

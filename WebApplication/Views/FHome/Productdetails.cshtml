@@ -1,0 +1,61 @@
+﻿@model WebApplication.Models.Products
+
+@{
+    ViewBag.Title = "Productdetails";
+}
+
+<br />
+<br />
+<section id="site-main-hl">
+    <div class="breadcrumb_nobackground margin-bottom-40">
+        <section class="bread-crumb">
+            <span class="crumb-border"></span>
+            <div class="container">
+                <p id="breadcrumbs" class="breadcrumb"><span><span><a href="/">Trang chủ</a> » <span><a href="/san-pham/">Sản phẩm</a> » <span class="breadcrumb_last" aria-current="page">@Html.DisplayFor(model => model.title)</span></span></span></span></p>
+            </div>
+        </section>
+    </div>	<div id="primary" class="content-area">
+        <main id="main" class="site-main" role="main">
+            <div class="woocommerce-notices-wrapper"></div>
+            <div id="product-206" class="product type-product post-206 status-publish first instock product_cat-ca-phe-cam-hung product_cat-ca-phe-pha-viet product_cat-ca-phe-the-gioi product_cat-do-uong has-post-thumbnail shipping-taxable purchasable product-type-simple">
+                <div class="container">
+                    <div class="row">
+                        <div class="details-product">
+                            <div class="product-detail-left product-images col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                <div class="col_large_fix1img large-image">
+                                    <a class="checkurl">
+                                        <img width="600" height="600" src="@Html.DisplayFor(model => model.image)" class="checkurl img-responsive wp-post-image" alt="Cà phê Americano" sizes="100vw">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-5 col-lg-5 col-md-offset-1 col-lg-offset-1 details-pro style_product">
+                                <div class="summary-entry-summary">
+                                    <h1 class="product_title entry-title title-product">@Html.DisplayFor(model => model.title)</h1><div class="price-box">
+                                        <div class="special-price">
+                                            <span class="price product-price"><span class="woocommerce-Price-amount amount">@Html.DisplayFor(model => model.price)&nbsp;<span class="woocommerce-Price-currencySymbol">₫</span></span></span>
+                                        </div>
+                                    </div>
+                                    <form class="cart"  action="#"  enctype="multipart/form-data">
+                                        <div class="quantity" style="float: left">
+                                            <label class="screen-reader-text" for="quantity_6355aa1f7b6f5">@Html.DisplayFor(model => model.title) số lượng</label>
+                                            <input  style="border: 1px solid #e1e1e1; padding: 10px 20px; width: auto; max-width: auto; display: block; " type="number" min="1" max="" name="quantity" value="1" title="SL" size="4" inputmode="numeric">
+                                        </div>
+                                        <button style="border: 1px solid #ffd800; background: #ffd800; padding: 10px 20px; width: auto; max-width: auto; display: block;" type="submit" name="add-to-cart">Mua hàng</button>
+                                    </form>
+                                    <div style="float:left; width:100%;">
+                                        <b class="b_infor">Thông tin:</b>
+                                        <section class="product-summary product_description margin-bottom-0">
+                                            <div class="woocommerce-product-details__short-description rte description">
+                                                <p>@Html.DisplayFor(model => model.description)</p>
+                                            </div>
+                                        </section>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</section>

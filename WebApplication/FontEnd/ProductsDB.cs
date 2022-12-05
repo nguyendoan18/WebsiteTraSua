@@ -10,13 +10,12 @@ namespace WebApplication.FontEnd
 {
     public class ProductsDB
     {//declare connection string  
-        public static string cs = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\CodeUpdate\WebsiteBanTraSua\WebApplication\WebApplication\App_Data\DBWebTraSua.mdf;Integrated Security=True";
 
         //Return list of all Employees  
         public List<Products> ListAll()
         {
             List<Products> lst = new List<Products>();
-            using (SqlConnection con = new SqlConnection(cs))
+            using (SqlConnection con = new SqlConnection(Connection.strConnect))
             {
                 con.Open();
                 SqlCommand com = new SqlCommand("SelectProcutstabledata", con);

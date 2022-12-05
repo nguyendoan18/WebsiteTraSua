@@ -17,14 +17,14 @@ function loadData() {
                                             <div class="product-box product_grid_2">
                                                 <div class="product_mini_2 clearfix">
                                                     <div class="img_product">
-                                                        <a class="product-img" href="/san-pham/ca-phe-trung/" title="${item.title}">
+                                                        <a class="product-img" href="/FHome/Productdetails/${item.Id}" title="${item.title}">
                                                             <img width="150" height="150" src="${item.image}" class="attachment-thumbnail size-thumbnail wp-post-image" alt="${item.title}" srcset="/wp-content/uploads/2020/06/p-1-150x150.jpg 150w, /wp-content/uploads/2020/06/p-1-300x300.jpg 300w, /wp-content/uploads/2020/06/p-1-100x100.jpg 100w, /wp-content/uploads/2020/06/p-1.jpg 600w" sizes="100vw">
                                                         </a>
                                                     </div>
                                                     <div class="product-info">
                                                         <div class="infor_prd">
                                                             <h3 class="name_product">
-                                                                <a href="/san-pham/ca-phe-trung/" title="${item.title}" class="product-name">
+                                                                <a href="/FHome/Productdetails/${item.Id}" title="${item.title}" class="product-name">
                                                                     <span class="name_product">${item.title}</span>
                                                                 </a>
                                                             </h3>
@@ -52,3 +52,24 @@ function loadData() {
         }
     });
 }
+
+//Function for getting the Data Based upon Employee ID  
+function getbyID(EmpID) {
+    $('#Name').css('border-color', 'lightgrey');
+    $('#Age').css('border-color', 'lightgrey');
+    $('#State').css('border-color', 'lightgrey');
+    $('#Country').css('border-color', 'lightgrey');
+    $.ajax({
+        url: "/FHome/getbyID/" + EmpID,
+        typr: "GET",
+        contentType: "application/json;charset=UTF-8",
+        dataType: "json",
+        success: function (result) {
+           
+        },
+        error: function (errormessage) {
+            alert(errormessage.responseText);
+        }
+    });
+    return false;
+}  
