@@ -1,0 +1,211 @@
+/*
+Theme Name: HALINK AT08
+Theme URI: https://web24s.com/
+Author: Halink team
+Author URI: https://web24s.com/
+Description: Mẫu thiết kế web bán cà phê, trà, thức uống, coffee house, coffee highland, trà sữa phúc long
+Version: 1.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: twentyseventeen
+Tags: one-column, two-columns, right-sidebar, flexible-header, accessibility-ready, custom-colors, custom-header, custom-menu, custom-logo, editor-style, featured-images, footer-widgets, post-formats, rtl-language-support, sticky-post, theme-options, threaded-comments, translation-ready
+
+This theme, like WordPress, is licensed under the GPL.
+Use it to make something cool, have fun, and share what you've learned with others.
+*/
+
+/*--------------------------------------------------------------
+>>> TABLE OF CONTENTS:
+----------------------------------------------------------------
+1.0 Normalize
+2.0 Accessibility
+3.0 Alignments
+4.0 Clearings
+5.0 Typography
+6.0 Forms
+7.0 Formatting
+8.0 Lists
+9.0 Tables
+10.0 Links
+11.0 Featured Image Hover
+12.0 Navigation
+13.0 Layout
+   13.1 Header
+   13.2 Front Page
+   13.3 Regular Content
+   13.4 Posts
+   13.5 Pages
+   13.6 Footer
+14.0 Comments
+15.0 Widgets
+16.0 Media
+   16.1 Galleries
+17.0 Customizer
+18.0 SVGs Fallbacks
+19.0 Media Queries
+20.0 Print
+--------------------------------------------------------------*/
+
+/*--------------------------------------------------------------
+1.0 Normalize
+Styles based on Normalize v5.0.0 @link https://github.com/necolas/normalize.css
+--------------------------------------------------------------*/
+*, ::after, ::before {
+    box-sizing: border-box;
+}
+
+a, a:hover, a:active{
+	text-decoration:none;
+}
+
+img,
+video {
+	height: auto; /* Make sure images are scaled correctly. */
+	max-width: 100%; /* Adhere to container width. */
+}
+
+img.alignleft,
+img.alignright {
+	float: none;
+	margin: 0;
+}
+
+.alignleft {
+	display: inline;
+	float: left;
+	margin-right: 1.5em;
+}
+
+.alignright {
+	display: inline;
+	float: right;
+	margin-left: 1.5em;
+}
+
+.aligncenter {
+	clear: both;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/* Gallery widget */
+
+.wp-caption,
+.gallery-caption {
+	color: #666;
+	font-size: 13px;
+	font-size: 0.8125rem;
+	font-style: italic;
+	margin-bottom: 1.5em;
+	max-width: 100%;
+}
+
+.gallery-columns-5 .gallery-caption,
+.gallery-columns-6 .gallery-caption,
+.gallery-columns-7 .gallery-caption,
+.gallery-columns-8 .gallery-caption,
+.gallery-columns-9 .gallery-caption {
+	display: none;
+}
+
+.gallery-item {
+	display: inline-block;
+	text-align: left;
+	vertical-align: top;
+	margin: 0 0 1.5em;
+	padding: 0 1em 0 0;
+	width: 50%;
+}
+
+.gallery-columns-1 .gallery-item {
+	width: 100%;
+}
+
+.gallery-columns-2 .gallery-item {
+	max-width: 50%;
+}
+
+.gallery-item a,
+.gallery-item a:hover,
+.gallery-item a:focus,
+.widget-area .gallery-item a,
+.widget-area .gallery-item a:hover,
+.widget-area .gallery-item a:focus {
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	background: none;
+	display: inline-block;
+	max-width: 100%;
+}
+
+.gallery-item a img {
+	display: block;
+	-webkit-transition: -webkit-filter 0.2s ease-in;
+	transition: -webkit-filter 0.2s ease-in;
+	transition: filter 0.2s ease-in;
+	transition: filter 0.2s ease-in, -webkit-filter 0.2s ease-in;
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+}
+
+.gallery-item a:hover img,
+.gallery-item a:focus img {
+	-webkit-filter: opacity(60%);
+	filter: opacity(60%);
+}
+
+.gallery-caption {
+	display: block;
+	text-align: left;
+	padding: 0 10px 0 0;
+	margin-bottom: 0;
+}
+
+@media screen and (min-width: 30em) {
+	/* Gallery Columns */
+
+	.gallery-item {
+		max-width: 25%;
+	}
+
+	.gallery-columns-1 .gallery-item {
+		max-width: 100%;
+	}
+
+	.gallery-columns-2 .gallery-item {
+		max-width: 50%;
+	}
+
+	.gallery-columns-3 .gallery-item {
+		max-width: 33.33%;
+	}
+
+	.gallery-columns-4 .gallery-item {
+		max-width: 25%;
+	}
+}
+
+@media screen and (min-width: 48em) {
+	/* Gallery Columns */
+
+	.gallery-columns-5 .gallery-item {
+		max-width: 20%;
+	}
+
+	.gallery-columns-6 .gallery-item {
+		max-width: 16.66%;
+	}
+
+	.gallery-columns-7 .gallery-item {
+		max-width: 14.28%;
+	}
+
+	.gallery-columns-8 .gallery-item {
+		max-width: 12.5%;
+	}
+
+	.gallery-columns-9 .gallery-item {
+		max-width: 11.11%;
+	}
+}

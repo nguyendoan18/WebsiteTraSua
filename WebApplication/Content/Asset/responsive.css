@@ -1,0 +1,21 @@
+/*For device: tablet, mobile*/
+/*Min -> 320px -> 768px ->992px -> 1024px -> 1200 -> Max*/
+#mySidenav{ display:none; }
+@media only screen and (max-width: 767px) {
+	#mySidenav{ display:block; }
+	
+	.mid-header{ margin-top:0; }
+	.header-nav{ height:auto; }
+	header.header{ position:static; background: #448ba1;}
+	.home-slide{ float:left; margin-top:50px; }
+	
+	.home-slide .metaslider .flex-control-nav li{ display:inline-block; }
+	.home-slide .metaslider .flex-control-nav{ margin-bottom:-22px; }
+	#home_about-2{ padding-top:50px; }
+}
+
+
+@media only screen and (max-width: 500px) {
+	
+}
+
