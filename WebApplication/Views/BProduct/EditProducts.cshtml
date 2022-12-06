@@ -35,7 +35,9 @@
 <script src="~/Scripts/jquery-3.4.1.js"></script>
 
 <script>
+    var OptionCombox = [];
     $(document).ready(function () {
+        LoadCombox();
         loadData();
     });
 
@@ -59,10 +61,22 @@
                                 <img style="width: 50%;" class="form-control" id="${"image"}${item.Id}" src="/Content/Image_web/${item.image}" />
                                 </td>
                                 <td><input class="form-control" type="file" id="${"imagefile"}${item.Id}"/></td>
-                                <td><input class="form-control" type="text" id="${"category"}${item.Id}" value="${item.category}" /></td>
-                                <td><button class="btn btn-success" onclick="return Update(${item.Id})" >Cập nhật</button></td>
-                            </tr>`;
+                                <td>
+                                            <select class="form-select" id="${"category"}${item.Id}" aria-label="Default select example">
+                                `;
+
+                    $.each(OptionCombox, function (i, itemCombo) {
+                        if (itemCombo.code == item.category)
+                            html += '<option selected value="' + itemCombo.code + '">' + itemCombo.title + '</option>';
+                        else html += '<option value="' + itemCombo.code + '">' + itemCombo.title + '</option>';
+                    });
+
+                    html += `</select>
+                                    </td>
+                                    <td><button class="btn btn-success" onclick="return Update(${item.Id})" >Cập nhật</button></td>
+                                </tr>`;
                 });
+                ///*<input class="form-control" type="text" id="${"category"}${item.Id}" value="${item.category}" />*/
                 $('._RenderItem').html(html);
             },
             error: function (errormessage) {
@@ -82,7 +96,7 @@
         var fileUpload = $('#imagefile' + Id).get(0);
         var files = fileUpload.files;
         //var image = files[0];
-       
+
         var category = $('#category' + Id).val();
         //var empObj = {
         //    Id: Id,
@@ -120,6 +134,24 @@
                 } else {
                     alert("Không thành công");
                 }
+            },
+            error: function (errormessage) {
+                alert(errormessage.responseText);
+            }
+        });
+    }
+
+
+    function LoadCombox() {
+        $.ajax({
+            url: "/BProduct/ListCategory",
+            type: "GET",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                $.each(result, function (key, item) {
+                    OptionCombox.push({ code: item.codecategory, title: item.title });
+                });
             },
             error: function (errormessage) {
                 alert(errormessage.responseText);

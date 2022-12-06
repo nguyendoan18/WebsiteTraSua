@@ -17,18 +17,25 @@ namespace WebApplication.Controllers.BackEnd
         public ActionResult Index(string namepage)
         {
             ViewData["ActionPage"] = (namepage == null ? "ShowProducts" : namepage);
+            ViewData["Category"] = proDB.ListCategory();
+
             return PartialView();
         }
 
 
-        [HttpPost]
-        public JsonResult CreateProduct(Users user)
+        [HttpPost, AllowAnonymous]
+        public JsonResult CreateProduct(Products product, HttpPostedFileBase image)
         {
-            return Json(proDB.Add(user), JsonRequestBehavior.AllowGet);
-        }
-        public class FileUpload{
-            Products product = new Products();
-            HttpPostedFileBase image { get; set; }
+            return Json(proDB.Add(new Products
+            {
+                Id = product.Id,
+                codeproducts = product.codeproducts,
+                title = product.title,
+                description = product.description,
+                price = product.price,
+                image = (image == null ? "" : image.FileName),
+                category = product.category
+            }), JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost, AllowAnonymous]

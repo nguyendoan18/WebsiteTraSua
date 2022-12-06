@@ -1,1 +1,174 @@
-﻿
+﻿<div class="content-wrapper">
+    <!-- Content -->
+
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <!-- Basic Bootstrap Table -->
+        <div class="row center-base">
+            <div class="col-md-12">
+                <div class="card mb-4">
+                    <h5 class="card-header  text-center">TẠO MỚI SẢN PHẨM</h5>
+                    <div class="card-body row">
+                        <div class="col-md-6">
+                            <label for="defaultFormControlInput" class="form-label">Tiêu đề</label>
+                            <input type="text"
+                                   class="form-control"
+                                   id="title"
+                                   placeholder="Nhập tiêu đề..."
+                                   aria-describedby="defaultFormControlHelp" />
+                        </div>
+                        <div class="col-md-6">
+                            <label for="defaultFormControlInput" class="form-label">Mô tả</label>
+                            <textarea type="text"
+                                      class="form-control"
+                                      id="description"
+                                      placeholder=""
+                                      aria-describedby="defaultFormControlHelp"></textarea>
+                        </div>
+                        <div class="col-md-12"><br /></div>
+                        <div class="col-md-6">
+                            <label for="defaultFormControlInput" class="form-label">Giá bán</label>
+                            <input type="number"
+                                   class="form-control"
+                                   id="price"
+                                   placeholder=""
+                                   aria-describedby="defaultFormControlHelp" />
+                        </div>
+                        <div class="col-md-6">
+                            <label for="defaultFormControlInput" class="form-label">Hình sản phẩm</label>
+                            <input type="file"
+                                   class="form-control"
+                                   id="image"
+                                   placeholder=""
+                                   aria-describedby="defaultFormControlHelp" />
+                        </div>
+                        <div class="col-md-12"><br /></div>
+                        <div class="col-md-6">
+                            <label for="defaultFormControlInput" class="form-label">Danh mục sản phẩm</label>
+                            @*<input type="text"
+                                class="form-control"
+                                id="category"
+                                placeholder="******"
+                                aria-describedby="defaultFormControlHelp" />*@
+                            <select class="form-select" id="category" aria-label="Default select example">
+                                
+                            </select>
+                        </div>
+                    </div>
+                    <button onclick="return Add();" class="btn btn-primary">Lưu lại</button>
+                </div>
+            </div>
+            <!--/ Basic Bootstrap Table -->
+            <!-- / Content -->
+
+        </div>
+
+    </div>
+    <!-- / Layout page -->
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <script src="~/Scripts/MainJS/Function_All.js"></script>
+    <script>
+        //Add Data Function
+        function Add() {
+            var res = validate();
+            if (res == false) {
+                return false;
+            }
+
+            var fileUpload = $('#image').get(0);
+            var files = fileUpload.files;
+            var codeproducts = removeAccents($('#title').val());
+            var formData = new FormData();
+            formData.append('codeproducts', codeproducts);
+            formData.append('title', $('#title').val());
+            formData.append('description', $('#description').val());
+            formData.append('price', $('#price').val());
+            formData.append('image', files[0]);
+            formData.append('category', $('#category').val());
+            $.ajax({
+                type: "POST",
+                url: "/BProduct/CreateProduct",
+                data: formData,
+                contentType: false,
+                processData: false,
+                cache: false,
+                success: function (result) {
+                    debugger;
+                    if (result = 1) {
+                        alert("Thành công");
+                        $('#title').val('');
+                        $('#description').val('');
+                        $('#price').val('');
+                        $('#image').val('');
+                        $('#category').val('');
+                    } else {
+                        alert("Khoog thành công");
+                    }
+                },
+                error: function (errormessage) {
+                    alert(errormessage.responseText);
+                }
+            });
+        }
+
+        //Valdidation using jquery
+        function validate() {
+            var isValid = true;
+            if ($('#title').val().trim() == "") {
+                $('#title').css('border-color', 'Red');
+                isValid = false;
+            }
+            else {
+                $('#title').css('border-color', 'lightgrey');
+            }
+            if ($('#description').val().trim() == "") {
+                $('#description').css('border-color', 'Red');
+                isValid = false;
+            }
+            else {
+                $('#description').css('border-color', 'lightgrey');
+            }
+            if ($('#price').val().trim() == "") {
+                $('#price').css('border-color', 'Red');
+                isValid = false;
+            }
+            else {
+                $('#price').css('border-color', 'lightgrey');
+            }
+            if ($('#image').val().trim() == "") {
+                $('#image').css('border-color', 'Red');
+                isValid = false;
+            }
+            else {
+                $('#image').css('border-color', 'lightgrey');
+            }
+            if ($('#category').val().trim() == "") {
+                $('#category').css('border-color', 'Red');
+                isValid = false;
+            }
+            else {
+                $('#category').css('border-color', 'lightgrey');
+            }
+            return isValid;
+        }
+
+        $(window).on("load", LoadCombox());
+
+        function LoadCombox() {
+            $.ajax({
+                url: "/BProduct/ListCategory",
+                type: "GET",
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    var option = '<option selected>Danh mục sản phẩm</option>';
+                    $.each(result, function (key, item) {
+                        option += `<option value="${item.codecategory}">${item.title}</option>`;
+                    });
+                    $('#category').html(option);
+                },
+                error: function (errormessage) {
+                    alert(errormessage.responseText);
+                }
+            });
+        }
+    </script>

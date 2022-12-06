@@ -58,17 +58,20 @@ namespace WebApplication.BackEnd
                 return lst;
             }
         }
-        public int Add(Users user)
+        public int Add(Products product)
         {
             int i;
             using (SqlConnection con = new SqlConnection(Connection.strConnect))
             {
                 con.Open();
-                SqlCommand com = new SqlCommand("AdminDBInsert", con);
+                SqlCommand com = new SqlCommand("ProDBInsert", con);
                 com.CommandType = CommandType.StoredProcedure;
-                //com.Parameters.AddWithValue("@Id", user.Id);
-                com.Parameters.AddWithValue("@username", user.username);
-                com.Parameters.AddWithValue("@password", user.password);
+                com.Parameters.AddWithValue("@codeproducts", product.codeproducts);
+                com.Parameters.AddWithValue("@title", product.title);
+                com.Parameters.AddWithValue("@description", product.description);
+                com.Parameters.AddWithValue("@price", product.price);
+                com.Parameters.AddWithValue("@image", product.image);
+                com.Parameters.AddWithValue("@category", product.category);
                 i = com.ExecuteNonQuery();
             }
             return i;
@@ -98,8 +101,6 @@ namespace WebApplication.BackEnd
                     com.Parameters.AddWithValue("@Action", "YesImage");
                 }
                 i = com.ExecuteNonQuery();
-                return i;
-
             }
             return i;
         }
