@@ -16,10 +16,10 @@
                             <th>Mô tả</th>
                             <th>Giá bán</th>
                             <th>Hình ảnh</th>
+                            <th>Danh mục</th>
                         </tr>
                     </thead>
                     <tbody class=" _RenderItem table-border-bottom-0">
-                        
                     </tbody>
                 </table>
             </div>
@@ -36,7 +36,7 @@
         loadData();
     });
 
-    //Load Data function  
+    //Load Data function
     function loadData() {
         $.ajax({
             url: "/BProduct/ListProduct",
@@ -47,13 +47,14 @@
                 var html = '';
                 $.each(result, function (key, item) {
                     html += `<tr>
-                            <td>${key+1}</td>
-                            <td><input class="form-control" type="text" id="${"title"}${item.Id}" value="${item.title}" /></td>
-                            <td><textarea class="form-control" id="${"description"}${item.Id}" rows="4" cols="auto">${item.description}</textarea>
-                            </td>
-                            <td><input class="form-control" type="text" id="${"price"}${item.Id}" value="${item.price}" /></td>
-                            <td><input class="form-control" type="image" id="${"image"}${item.Id}" src="${item.image}" /></td>
-                        </tr>`;
+                            <td>${key + 1}</td>
+                                <td><input class="form-control" type="text" id="${"title"}${item.Id}" value="${item.title}" /></td>
+                                <td><textarea class="form-control" id="${"description"}${item.Id}" rows="4" cols="auto">${item.description}</textarea>
+                                </td>
+                                <td><input class="form-control" type="text" id="${"price"}${item.Id}" value="${item.price}" /></td>
+                                <td><input style="width: 50%;" class="form-control" type="image" id="${"image"}${item.Id}" src="Content/Image_web/${item.image}" /></td>
+                                <td><input class="form-control" type="text" id="${"category"}${item.category}" value="${item.category}" /></td>
+                            </tr>`;
                 });
                 $('._RenderItem').html(html);
             },

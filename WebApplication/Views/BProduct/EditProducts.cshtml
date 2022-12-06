@@ -1,1 +1,129 @@
 ﻿
+
+
+<div class="content-wrapper">
+    <!-- Content -->
+    <h3 class="card-header text-center"><b>CẬP NHẬT SỐ LƯỢNG SẢN PHẨM</b></h3>
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <!-- Basic Bootstrap Table -->
+        <div class="card" style="width: 1366px">
+            <div class="table-responsive text-nowrap">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Tiêu đề</th>
+                            <th>Mô tả</th>
+                            <th>Giá bán</th>
+                            <th>Ảnh trước</th>
+                            <th>Hình ảnh</th>
+                            <th>Danh mục</th>
+                            <th>Hành động</th>
+                        </tr>
+                    </thead>
+                    <tbody class=" _RenderItem table-border-bottom-0">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!--/ Basic Bootstrap Table -->
+        <!-- / Content -->
+    </div>
+
+</div>
+<!-- / Layout page -->
+<script src="~/Scripts/jquery-3.4.1.js"></script>
+
+<script>
+    $(document).ready(function () {
+        loadData();
+    });
+
+    //Load Data function
+    function loadData() {
+        $.ajax({
+            url: "/BProduct/ListProduct",
+            type: "GET",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                var html = '';
+                $.each(result, function (key, item) {
+                    html += `<tr>
+                                <td>${key + 1}</td>
+                                <td><input class="form-control" type="text" id="${"title"}${item.Id}" value="${item.title}" /></td>
+                                <td><textarea class="form-control" id="${"description"}${item.Id}" rows="4" cols="auto">${item.description}</textarea>
+                                </td>
+                                <td><input class="form-control" type="text" id="${"price"}${item.Id}" value="${item.price}" /></td>
+                                <td>
+                                <img style="width: 50%;" class="form-control" id="${"image"}${item.Id}" src="/Content/Image_web/${item.image}" />
+                                </td>
+                                <td><input class="form-control" type="file" id="${"imagefile"}${item.Id}"/></td>
+                                <td><input class="form-control" type="text" id="${"category"}${item.Id}" value="${item.category}" /></td>
+                                <td><button class="btn btn-success" onclick="return Update(${item.Id})" >Cập nhật</button></td>
+                            </tr>`;
+                });
+                $('._RenderItem').html(html);
+            },
+            error: function (errormessage) {
+                alert(errormessage.responseText);
+            }
+        });
+    }
+
+    function Update(Id) {
+        //var res = validate();
+        //if (res == false) {
+        //    return false;
+        //}
+        var title = $('#title' + Id).val();
+        var description = $('#description' + Id).val();
+        var price = $('#price' + Id).val();
+        var fileUpload = $('#imagefile' + Id).get(0);
+        var files = fileUpload.files;
+        //var image = files[0];
+       
+        var category = $('#category' + Id).val();
+        //var empObj = {
+        //    Id: Id,
+        //    title: title,
+        //    description: description,
+        //    price: price,
+        //    image: image,
+        //    category: category
+        //};
+        var formData = new FormData();
+        formData.append('Id', Id);
+        formData.append('title', title);
+        formData.append('description', description);
+        formData.append('price', price);
+        formData.append('image', files[0]);
+        formData.append('category', category);
+
+        $.ajax({
+            //url: "/BProduct/UpdateProduct",
+            //data: FJSON.stringify(obj),
+            //type: "POST",
+            //contentType: "application/json;charset=utf-8",
+            //dataType: "json",
+            type: "POST",
+            url: "/BProduct/UpdateProduct",
+            data: formData,
+            contentType: false,
+            processData: false,
+            cache: false,
+            success: function (result) {
+                debugger;
+                loadData();
+                if (result = 1) {
+                    alert("Thành công");
+                } else {
+                    alert("Không thành công");
+                }
+            },
+            error: function (errormessage) {
+                alert(errormessage.responseText);
+            }
+        });
+    }
+</script>

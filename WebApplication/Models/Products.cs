@@ -13,5 +13,6 @@ namespace WebApplication.Models
         public string description { get; set; }
         public float price { get; set; }
         public string image { get; set; }
+        public string category { get; set; }
     }
 }
