@@ -16,10 +16,16 @@ namespace WebApplication.Controllers.BackEnd
 
         public ActionResult Index(string namepage)
         {
-            ViewData["ActionPage"] = (namepage == null ? "ShowProducts" : namepage);
-            ViewData["Category"] = proDB.ListCategory();
-
-            return PartialView();
+            if (Session["UserName"] != null)
+            {
+                ViewData["ActionPage"] = (namepage == null ? "ShowProducts" : namepage);
+                ViewData["Category"] = proDB.ListCategory();
+                return PartialView();
+            }
+            else
+            {
+                return PartialView("../Shared/Login");
+            }
         }
 
 
@@ -41,13 +47,15 @@ namespace WebApplication.Controllers.BackEnd
         [HttpPost, AllowAnonymous]
         public JsonResult UpdateProduct(Products product, HttpPostedFileBase image)
         {
-            return Json(proDB.Update(new Products { Id = product.Id, 
+            return Json(proDB.Update(new Products
+            {
+                Id = product.Id,
                 title = product.title,
                 description = product.description,
                 price = product.price,
                 image = (image == null ? "" : image.FileName),
                 category = product.category
-            }), JsonRequestBehavior.AllowGet) ;
+            }), JsonRequestBehavior.AllowGet);
         }
         [HttpGet]
         public JsonResult DeleteProduct(int Id)

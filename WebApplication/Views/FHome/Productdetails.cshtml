@@ -23,16 +23,14 @@
                         <div class="details-product">
                             <div class="product-detail-left product-images col-xs-12 col-sm-6 col-md-6 col-lg-6">
                                 <div class="col_large_fix1img large-image">
-                                    <a class="checkurl">
-                                        <img width="600" height="600" src="@Html.DisplayFor(model => model.image)" class="checkurl img-responsive wp-post-image" alt="Cà phê Americano" sizes="100vw">
-                                    </a>
+                                    <img width="600" height="600" src="/Content/Image_web/@Html.DisplayFor(model => model.image)" class="checkurl img-responsive wp-post-image" alt="Cà phê Americano" sizes="100vw">
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-6 col-md-5 col-lg-5 col-md-offset-1 col-lg-offset-1 details-pro style_product">
                                 <div class="summary-entry-summary">
                                     <h1 class="product_title entry-title title-product">@Html.DisplayFor(model => model.title)</h1><div class="price-box">
                                         <div class="special-price">
-                                            <span class="price product-price"><span class="woocommerce-Price-amount amount">@Html.DisplayFor(model => model.price)&nbsp;<span class="woocommerce-Price-currencySymbol">₫</span></span></span>
+                                            <span class="price product-price"><span class="woocommerce-Price-amount amount"><script> var convertDau =  "@Html.DisplayFor(model => model.price)"; document.write( convertDau.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","))</script>&nbsp;<span class="woocommerce-Price-currencySymbol">₫</span></span></span>
                                         </div>
                                     </div>
                                     <form class="cart"  action="#"  enctype="multipart/form-data">

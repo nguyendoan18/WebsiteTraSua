@@ -67,7 +67,7 @@
 
                 <ul class="menu-inner py-1">
                     <!-- Dashboard -->
-                    <li class="menu-item">
+                    <li class="menu-item HomePage">
                         <a href="/BAdministrator/Index/?namepage=HomePage" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-home-circle"></i>
                             <div data-i18n="Analytics">Trang chủ</div>
@@ -75,62 +75,62 @@
                     </li>
 
                     <!-- Layouts -->
-                    <li class="menu-item">
+                    <li class="menu-item Products">
                         <a href="javascript:void(0);" class="menu-link menu-toggle">
                             <i class="menu-icon tf-icons bx bx-layout"></i>
                             <div data-i18n="Layouts">Sản phẩm</div>
                         </a>
 
                         <ul class="menu-sub">
-                            <li class="menu-item">
+                            <li class="menu-item ProductPortfolio">
                                 <a href="/BProduct/Index/?namepage=ProductPortfolio" class="menu-link">
                                     <div data-i18n="Without menu">Danh mục sản phẩm</div>
                                 </a>
                             </li>
-                            <li class="menu-item">
+                            <li class="menu-item CreateProducts">
                                 <a href="/BProduct/Index/?namepage=CreateProducts" class="menu-link">
                                     <div data-i18n="Without navbar">Tạo mới Sản phẩm</div>
                                 </a>
                             </li>
-                            <li class="menu-item">
+                            <li class="menu-item EditProducts">
                                 <a href="/BProduct/Index/?namepage=EditProducts" class="menu-link">
                                     <div data-i18n="Container">Cập nhật Sản phẩm</div>
                                 </a>
                             </li>
-                            <li class="menu-item">
+                            <li class="menu-item DeleteProducts">
                                 <a href="/BProduct/Index/?namepage=DeleteProducts" class="menu-link">
                                     <div data-i18n="Blank">Xóa bỏ Sản phẩm</div>
                                 </a>
                             </li>
-                            <li class="menu-item">
+                            <li class="menu-item ShowProducts">
                                 <a href="/BProduct/Index/?namepage=ShowProducts" class="menu-link">
                                     <div data-i18n="Fluid">Hiển thị Sản phẩm</div>
                                 </a>
                             </li>
 
                         </ul>
-                    <li class="menu-item">
+                    <li class="menu-item Account">
                         <a href="javascript:void(0);" class="menu-link menu-toggle">
                             <i class="menu-icon tf-icons bx bx-lock-open-alt"></i>
                             <div data-i18n="Layouts">Người dùng</div>
                         </a>
                         <ul class="menu-sub">
-                            <li class="menu-item">
+                            <li class="menu-item CreateAdministrators">
                                 <a href="/BAdministrator/Index/?namepage=CreateAdministrators" class="menu-link">
                                     <div data-i18n="Container">Tạo mới Tài khoản</div>
                                 </a>
                             </li>
-                            <li class="menu-item">
+                            <li class="menu-item EditAdministrators">
                                 <a href="/BAdministrator/Index/?namepage=EditAdministrators" class="menu-link">
                                     <div data-i18n="Container">Cập nhật Tài khoản</div>
                                 </a>
                             </li>
-                            <li class="menu-item">
+                            <li class="menu-item DeleteAdministrators">
                                 <a href="/BAdministrator/Index/?namepage=DeleteAdministrators" class="menu-link">
                                     <div data-i18n="Container">Xóa bỏ Tài khoản</div>
                                 </a>
                             </li>
-                            <li class="menu-item">
+                            <li class="menu-item ShowAdministrators">
                                 <a href="/BAdministrator/Index/?namepage=ShowAdministrators" class="menu-link">
                                     <div data-i18n="Container">Hiển thị Tài khoản</div>
                                 </a>
@@ -183,10 +183,16 @@
                                                     </div>
                                                 </div>
                                                 <div class="flex-grow-1">
-                                                    <span class="fw-semibold d-block">John Doe</span>
+                                                    <span class="fw-semibold d-block">@Session["username"]</span>
                                                     <small class="text-muted">Đang hoạt động</small>
                                                 </div>
                                             </div>
+                                        </a>
+                                    </li>
+                                    <li class="text-center">
+                                        <a class="dropdown-item" href="/Account/Logout">
+                                            <i class="bx bx-power-off me-2"></i>
+                                            <span class="align-middle">Đăng xuất</span>
                                         </a>
                                     </li>
                                 </ul>

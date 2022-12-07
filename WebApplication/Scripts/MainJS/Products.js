@@ -18,7 +18,7 @@ function loadData() {
                                                 <div class="product_mini_2 clearfix">
                                                     <div class="img_product">
                                                         <a class="product-img" href="/FHome/Productdetails/${item.Id}" title="${item.title}">
-                                                            <img width="150" height="150" src="${item.image}" class="attachment-thumbnail size-thumbnail wp-post-image" alt="${item.title}" srcset="/wp-content/uploads/2020/06/p-1-150x150.jpg 150w, /wp-content/uploads/2020/06/p-1-300x300.jpg 300w, /wp-content/uploads/2020/06/p-1-100x100.jpg 100w, /wp-content/uploads/2020/06/p-1.jpg 600w" sizes="100vw">
+                                                            <img width="150" height="150" src="/Content/Image_web/${item.image}" class="attachment-thumbnail size-thumbnail wp-post-image" alt="${item.title}" sizes="100vw">
                                                         </a>
                                                     </div>
                                                     <div class="product-info">
@@ -31,7 +31,7 @@ function loadData() {
                                                         </div>
                                                         <div class="price_base ">
                                                             <div class="price-box clearfix">
-                                                                <div class="special-price"> <span class="price product-price"><span class="woocommerce-Price-amount amount">${item.price}<span class="woocommerce-Price-currencySymbol">₫</span></span></span> </div>
+                                                                <div class="special-price"> <span class="price product-price"><span class="woocommerce-Price-amount amount">${item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") } <span class="woocommerce-Price-currencySymbol"> ₫</span></span></span> </div>
                                                             </div>
                                                         </div>
                                                         <div class="summary_grid">
