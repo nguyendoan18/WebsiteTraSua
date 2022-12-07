@@ -16,7 +16,7 @@ namespace WebApplication.Controllers.BackEnd
 
         public ActionResult Index(string namepage)
         {
-            if (Session["UserName"] != null)
+            if (Session["username"] != null)
             {
                 ViewData["ActionPage"] = (namepage == null ? "ShowProducts" : namepage);
                 ViewData["Category"] = proDB.ListCategory();
