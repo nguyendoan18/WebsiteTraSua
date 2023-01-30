@@ -704,7 +704,7 @@ color:#fff
 	color: #fff
 }
 .topbar {
-	height: 75px;
+	height: 115px;
 	line-height: 75px;
 	float: left;
 	width: 100%
@@ -2069,7 +2069,6 @@ footer.footer .bottom-ft .list-menu-bft li a {
 .footer {
 	float: left;
 	width: 100%;
-	background-image: url("images/bg_footer.png");
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center
@@ -2077,7 +2076,6 @@ footer.footer .bottom-ft .list-menu-bft li a {
 
 @media (min-width: 1900px) {
 .footer {
-	background-image: url("images/bg_footer.png");
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center
@@ -2086,7 +2084,6 @@ footer.footer .bottom-ft .list-menu-bft li a {
 
 @media (min-width: 1400px) and (max-width: 1899px) {
 .footer {
-	background-image: url("images/bg_footer.png");
 	background-size: contain;
 	background-position: center;
 	background-repeat: no-repeat

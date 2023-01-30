@@ -126,10 +126,13 @@
     <Compile Include="Controllers\BackEnd\BAdministratorController.cs" />
     <Compile Include="Controllers\BackEnd\BProductController.cs" />
     <Compile Include="Controllers\FontEnd\FHomeController.cs" />
+    <Compile Include="FontEnd\CartsDB.cs" />
+    <Compile Include="FontEnd\CustomersDB.cs" />
     <Compile Include="FontEnd\ProductsDB.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Carts.cs" />
     <Compile Include="Models\Categorys.cs" />
     <Compile Include="Models\Connection.cs" />
     <Compile Include="Models\Products.cs" />
@@ -361,6 +364,7 @@
     <Content Include="Content\vendor\fonts\boxicons\boxicons.ttf" />
     <Content Include="Content\vendor\fonts\boxicons\boxicons.woff" />
     <Content Include="Content\vendor\fonts\boxicons\boxicons.woff2" />
+    <Content Include="Content\Asset\ekko-lightbox.min.css.map" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -408,6 +412,9 @@
     <Content Include="Views\BProduct\ProductPortfolio.cshtml" />
     <Content Include="Views\BProduct\DeleteProducts.cshtml" />
     <Content Include="Views\Shared\Login.cshtml" />
+    <Content Include="Views\FHome\Cart.cshtml" />
+    <Content Include="Views\FHome\Login00.cshtml" />
+    <Content Include="Views\Shared\_Layout - Copy.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Account\" />

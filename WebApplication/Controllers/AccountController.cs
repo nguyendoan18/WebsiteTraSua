@@ -24,7 +24,7 @@ namespace WebApplication.Controllers
 
         }
         [HttpPost]
-        public ActionResult Login(string username, string password)
+        public JsonResult Login(string username, string password)
         {
             //HttpCookie reqCookies = Request.Cookies["UserInfo-DangVien"];
             //login.password = GetMD5(login.password);
@@ -34,12 +34,16 @@ namespace WebApplication.Controllers
                 ////add session
                 Session["username"] = username;
                 Session["password"] = password;
-                return RedirectToAction("/BAdministrator");
+                return Json( new { connect = "1" }, JsonRequestBehavior.AllowGet);
+
+                //return RedirectToAction("/BAdministrator");
             }
             else
             {
                 ViewBag.check = 1;
-                return PartialView("../Shared/Login");
+                return Json(new { connect = "0" }, JsonRequestBehavior.AllowGet);
+
+                //return PartialView("../Shared/Login");
             }
         }
         [HttpGet]
@@ -50,7 +54,6 @@ namespace WebApplication.Controllers
         }
         public bool CheckUserPass(string username, string password)
         {
-
             WebApplication.BackEnd.AdministratorsDB adminDB = new WebApplication.BackEnd.AdministratorsDB();
             if (username != null && password != null)
             {

@@ -8,7 +8,7 @@ namespace WebApplication.Models
 {
     public static class Connection
     {
-        public static string strConnect = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\CodeUpdate\WebsiteTraSua\WebApplication\App_Data\DBWebTraSua.mdf;Integrated Security=True";
+        public static string strConnect = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\CodeUpdate\WebsiteTraSuaBaocao\WebApplication\App_Data\DBWebTraSua.mdf;Integrated Security=True";
 
     }
 }

@@ -31,7 +31,7 @@ function loadData() {
                                                         </div>
                                                         <div class="price_base ">
                                                             <div class="price-box clearfix">
-                                                                <div class="special-price"> <span class="price product-price"><span class="woocommerce-Price-amount amount">${item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") } <span class="woocommerce-Price-currencySymbol"> ₫</span></span></span> </div>
+                                                                <div class="special-price"> <span class="price product-price"><span class="woocommerce-Price-amount amount">${item.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") } <span class="woocommerce-Price-currencySymbol"> ₫</span></span></span> </div>
                                                             </div>
                                                         </div>
                                                         <div class="summary_grid">

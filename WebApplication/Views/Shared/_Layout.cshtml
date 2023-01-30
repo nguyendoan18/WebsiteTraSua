@@ -22,11 +22,6 @@
     <link rel="dns-prefetch" href="http://fonts.googleapis.com/">
     <link rel="dns-prefetch" href="http://s.w.org/">
     <link href="https://fonts.gstatic.com/" crossorigin="" rel="preconnect">
-    <script type="text/javascript">
-        window._wpemojiSettings = { "baseUrl": "https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/72x72\/", "ext": ".png", "svgUrl": "https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/svg\/", "svgExt": ".svg", "source": { "concatemoji": "http:\/\/at08.chonweb.vn\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.4.12" } };
-        /*! This file is auto-generated */
-        !function (e, a, t) { var n, r, o, i = a.createElement("canvas"), p = i.getContext && i.getContext("2d"); function s(e, t) { var a = String.fromCharCode; p.clearRect(0, 0, i.width, i.height), p.fillText(a.apply(this, e), 0, 0); e = i.toDataURL(); return p.clearRect(0, 0, i.width, i.height), p.fillText(a.apply(this, t), 0, 0), e === i.toDataURL() } function c(e) { var t = a.createElement("script"); t.src = e, t.defer = t.type = "text/javascript", a.getElementsByTagName("head")[0].appendChild(t) } for (o = Array("flag", "emoji"), t.supports = { everything: !0, everythingExceptFlag: !0 }, r = 0; r < o.length; r++)t.supports[o[r]] = function (e) { if (!p || !p.fillText) return !1; switch (p.textBaseline = "top", p.font = "600 32px Arial", e) { case "flag": return s([127987, 65039, 8205, 9895, 65039], [127987, 65039, 8203, 9895, 65039]) ? !1 : !s([55356, 56826, 55356, 56819], [55356, 56826, 8203, 55356, 56819]) && !s([55356, 57332, 56128, 56423, 56128, 56418, 56128, 56421, 56128, 56430, 56128, 56423, 56128, 56447], [55356, 57332, 8203, 56128, 56423, 8203, 56128, 56418, 8203, 56128, 56421, 8203, 56128, 56430, 8203, 56128, 56423, 8203, 56128, 56447]); case "emoji": return !s([55357, 56424, 55356, 57342, 8205, 55358, 56605, 8205, 55357, 56424, 55356, 57340], [55357, 56424, 55356, 57342, 8203, 55358, 56605, 8203, 55357, 56424, 55356, 57340]) }return !1 }(o[r]), t.supports.everything = t.supports.everything && t.supports[o[r]], "flag" !== o[r] && (t.supports.everythingExceptFlag = t.supports.everythingExceptFlag && t.supports[o[r]]); t.supports.everythingExceptFlag = t.supports.everythingExceptFlag && !t.supports.flag, t.DOMReady = !1, t.readyCallback = function () { t.DOMReady = !0 }, t.supports.everything || (n = function () { t.readyCallback() }, a.addEventListener ? (a.addEventListener("DOMContentLoaded", n, !1), e.addEventListener("load", n, !1)) : (e.attachEvent("onload", n), a.attachEvent("onreadystatechange", function () { "complete" === a.readyState && t.readyCallback() })), (n = t.source || {}).concatemoji ? c(n.concatemoji) : n.wpemoji && n.twemoji && (c(n.twemoji), c(n.wpemoji))) }(window, document, window._wpemojiSettings);
-    </script>
     <script src="~/Content/Asset/wp-emoji-release.min.js" type="text/javascript" defer=""></script>
     <style type="text/css">
         img.wp-smiley,
@@ -53,7 +48,7 @@
             visibility: visible;
         }
     </style>
-    <link rel="stylesheet" id="twentyseventeen-fonts-css" href="~/Content/Asset/css" type="text/css" media="all">
+    @*<link rel="stylesheet" id="twentyseventeen-fonts-css" href="~/Content/Asset/css" type="text/css" media="all">*@
     <link rel="stylesheet" id="twentyseventeen-style-css" href="~/Content/Asset/style(1).css" type="text/css" media="all">
     <link rel="stylesheet" href="~/Content/Asset/font-awesome.min.css" type="text/css" media="all">
     <link rel="stylesheet" href="~/Content/Asset/plugin.scss.css" type="text/css" media="all">
@@ -111,12 +106,23 @@
             }
         </style>
     </noscript>
-    <link rel="stylesheet" href="~/Content/Asset/css(1)" media="all">
+    @*<link rel="stylesheet" href="~/Content/Asset/css(1)" media="all">*@
 </head>
 
 <body class="home page-template-default page page-id-2 wp-custom-logo theme-halink.at08 woocommerce-js twentyseventeen-front-page has-header-image page-two-column colors-light">
     <div class="opacity_menu"></div>
-   
+    @*Slide Navi*@
+    <style>
+        .sidenav .close_menu {
+            display: block;
+            height: 100px;
+            background-size: 34%;
+            background-image: url("http://at08.chonweb.vn/wp-content/uploads/2020/06/demo-logo.png");
+            background-repeat: no-repeat;
+            background-position: center;
+            width: 100%
+        }
+    </style>
     <div id="mySidenav" class="sidenav menu_mobile">
         <div class="top_menu_mobile">
             <span class="close_menu">
@@ -140,7 +146,7 @@
                 </ul>
             </div>
         </div>
-    </div>   
+    </div>
     <header class="header">
         <div class="topbar hidden-xs">
             <div class="container">
@@ -149,7 +155,7 @@
                         <div class="topbar_left">
                             <ul>
                                 <li>
-                                    <span class="welcome_text"></span>
+                                    <span class="welcome_text hidden">Chào mừng <b>@Session["username"]</b> đến với Trà Sữa DSNGUYEN!</span>
                                 </li>
                             </ul>
                         </div>
@@ -158,15 +164,20 @@
                         <div class="list-inline f-right">
                             <ul class="ul-account">
 
-                                <li class="hidden-xs">
+                                <li id="aRegister" class="hidden-xs">
                                     <a href="/FHome/Register" title="Đăng ký" class="account_a a_db">
                                         <span>Đăng ký</span>
                                     </a>
                                 </li>
-                                <li class="line_ hidden-xs">/</li>
-                                <li class="hidden-xs">
+                                <li id="adauxet" class="line_ hidden-xs">/</li>
+                                <li id="aLogin" class="hidden-xs">
                                     <a href="/FHome/Login" title="Đăng nhập" class="account_a a_db">
                                         <span>Đăng nhập</span>
+                                    </a>
+                                </li>
+                                <li id="aLogout" class="hidden-xs hidden">
+                                    <a href="/FHome/Logout" title="Đăng xuất" class="account_a a_db">
+                                        <span>Đăng xuất</span>
                                     </a>
                                 </li>
 
@@ -185,6 +196,15 @@
                                 <div class="container">
                                     <div class="row row-noGutter">
                                         <nav class="header-nav">
+                                            <!-- Logo Menu -->
+                                            <ul class="logo_center">
+                                                <li class="logo">
+                                                    <a href="" class="logo-wrapper ">
+                                                        <img src="/Content/Image_web/logo-dsnguyen.png" alt="logo-dsnguyen">
+                                                    </a>
+                                                </li>
+                                            </ul>
+
                                             <!-- Left Menu -->
                                             <ul id="left-menu" class="item_big nav-left hidden-xs hidden-sm menu">
                                                 <li id="menu-item-161" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-2 current_page_item menu-item-161 nav-item "><a href="/" aria-current="page">Trang chủ</a></li>
@@ -199,22 +219,16 @@
                                                     </ul>
                                                 </li>
                                             </ul>
-                                            <!-- Logo Menu -->
-                                            <!--<ul class="logo_center">
-                                                <li class="logo">
-                                                    <a href="/" class="logo-wrapper ">-->
-                                            @* <img src="~/Content/Asset/demo-logo.png" alt="">*@
-                                            <!--</a>
-                                                </li>
-                                            </ul>-->
+
+
                                             <!-- Right Menu -->
                                             <ul id="right-menu" class="item_big nav-right hidden-xs hidden-sm menu">
                                                 <li id="menu-item-172" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-172 nav-item "><a href="/FHome/Service">Dịch vụ</a></li>
                                                 <li id="menu-item-170" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-170 nav-item "><a href="/FHome/News">Tin tức</a></li>
                                                 <li id="menu-item-169" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-169 nav-item "><a href="/FHome/Contact">Liên hệ</a></li>
                                             </ul>
-                                            <!-- Cartgroup -->
 
+                                            <!-- Cartgroup -->
                                             <div class="cartgroup">
                                                 <div class="searchion inline-b">
                                                     <span class="visible_index nn"><i class="fas fa-search"></i></span>
@@ -232,10 +246,10 @@
                                                     <div class="top-cart-contain f-right">
                                                         <div class="mini-cart text-xs-center">
                                                             <div class="heading-cart cart_header">
-                                                                <a class="img_hover_cart" href="#" title="Giỏ hàng">
+                                                                <a class="img_hover_cart" href="/FHome/Cart" title="Giỏ hàng">
                                                                     <div class="icon_hotline visible_index">
                                                                         <i class="fa fa-shopping-bag" aria-hidden="true"></i>
-                                                                        <span class="count_item count_item_pr button_gradient">0</span>
+                                                                        <span id="count_buycart" class="count_item count_item_pr button_gradient">0</span>
                                                                     </div>
                                                                 </a>
                                                             </div>
@@ -254,6 +268,7 @@
                                                     </div>
                                                 </div>
                                             </div>
+
                                         </nav>
                                     </div>
                                 </div>
@@ -278,6 +293,7 @@
             </div>
         </div>
     </header>
+
     <br />
     <br />
     <br />
@@ -350,5 +366,23 @@
         </div>
     </footer>
     <script src="~/Scripts/MainJS/ScriptFooter.js"></script>
+    <script>
+        $(document).ready(function () {
+            if ("@Session["username"]" == null || "@Session["username"]" == "" ) {
+                $('.welcome_text').addClass("hidden");
+                $('#aLogout').addClass("hidden");
+                $('#aLogin').removeClass("hidden");
+                $('#aRegister').removeClass("hidden");
+                $('#adauxet').removeClass("hidden");
+            } else {
+                $('.welcome_text').removeClass("hidden");
+                $('#aLogout').removeClass("hidden");
+                $('#aLogin').addClass("hidden");
+                $('#aRegister').addClass("hidden");
+                $('#adauxet').addClass("hidden");
+            }
+
+        });
+    </script>
 </body>
 </html>

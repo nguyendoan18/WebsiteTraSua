@@ -19,7 +19,7 @@ namespace WebApplication.Controllers.BackEnd
         [HttpGet]
         public ActionResult Index(string namepage)
         {
-            if (Session["username"] != null)
+            if (Session["username"] != null && CheckUserPass(Session["username"].ToString(), Session["password"].ToString()))
             {
                 ViewData["ActionPage"] = (namepage == null ? "HomePage" : namepage);
                 return PartialView();

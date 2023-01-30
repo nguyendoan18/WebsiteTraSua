@@ -384,7 +384,7 @@
 }
 }
 .section_menu_today {
-	background-image: url("images/bg_menutoday.jpg");
+	/*background-image: url("images/bg_menutoday.jpg");*/
 	background-repeat: no-repeat;
 	background-position: center;
 	width: 100%;

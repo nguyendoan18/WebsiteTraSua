@@ -3,10 +3,10 @@
 @{
     ViewBag.Title = "Productdetails";
 }
-
+<script src="~/Scripts/jquery-3.4.1.js"></script>
 <br />
 <br />
-<section id="site-main-hl">
+<section id="site-main-hl" style="margin-bottom: 5%; margin-top: 7%;">
     <div class="breadcrumb_nobackground margin-bottom-40">
         <section class="bread-crumb">
             <span class="crumb-border"></span>
@@ -23,6 +23,7 @@
                         <div class="details-product">
                             <div class="product-detail-left product-images col-xs-12 col-sm-6 col-md-6 col-lg-6">
                                 <div class="col_large_fix1img large-image">
+                                    <input class="hidden" type="text" id="category" value="@Html.DisplayFor(model => model.Id)" />
                                     <img width="600" height="600" src="/Content/Image_web/@Html.DisplayFor(model => model.image)" class="checkurl img-responsive wp-post-image" alt="Cà phê Americano" sizes="100vw">
                                 </div>
                             </div>
@@ -30,15 +31,15 @@
                                 <div class="summary-entry-summary">
                                     <h1 class="product_title entry-title title-product">@Html.DisplayFor(model => model.title)</h1><div class="price-box">
                                         <div class="special-price">
-                                            <span class="price product-price"><span class="woocommerce-Price-amount amount"><script> var convertDau =  "@Html.DisplayFor(model => model.price)"; document.write( convertDau.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","))</script>&nbsp;<span class="woocommerce-Price-currencySymbol">₫</span></span></span>
+                                            <span class="price product-price"><span class="woocommerce-Price-amount amount"><script> var convertDau =  "@Html.DisplayFor(model => model.price)"; document.write( convertDau.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."))</script>&nbsp;<span class="woocommerce-Price-currencySymbol">₫</span></span></span>
                                         </div>
                                     </div>
-                                    <form class="cart"  action="#"  enctype="multipart/form-data">
+                                    <form class="cart" onsubmit="return false">
                                         <div class="quantity" style="float: left">
                                             <label class="screen-reader-text" for="quantity_6355aa1f7b6f5">@Html.DisplayFor(model => model.title) số lượng</label>
-                                            <input  style="border: 1px solid #e1e1e1; padding: 10px 20px; width: auto; max-width: auto; display: block; " type="number" min="1" max="" name="quantity" value="1" title="SL" size="4" inputmode="numeric">
+                                            <input  style="border: 1px solid #e1e1e1; padding: 10px 20px; width: auto; max-width: auto; display: block; " type="number" min="1" max="" id="quantity" value="1" title="SL" size="4" inputmode="numeric">
                                         </div>
-                                        <button style="border: 1px solid #ffd800; background: #ffd800; padding: 10px 20px; width: auto; max-width: auto; display: block;" type="submit" name="add-to-cart">Mua hàng</button>
+                                        <button style="border: 1px solid #ffd800; background: #ffd800; padding: 10px 20px; width: auto; max-width: auto; display: block;" onclick="return buyCart();">Mua hàng</button>
                                     </form>
                                     <div style="float:left; width:100%;">
                                         <b class="b_infor">Thông tin:</b>
@@ -57,3 +58,41 @@
         </main>
     </div>
 </section>
+
+<script>
+    function buyCart() {
+        console.log("buy cart");
+        $("#count_buycart").append("");
+
+        var empObj = {
+            Id: $('#Id').val(),
+            customer: "@Session["username"]",
+            category: $('#category').val(),
+            quantity: $('#quantity').val(),
+        };
+        console.log(empObj);
+
+        //$.ajax({
+        //    url: "/FHome/Login",
+        //    data: JSON.stringify(empObj),
+        //    type: "POST",
+        //    contentType: "application/json;charset=utf-8",
+        //    dataType: "json",
+        //    success: function (result) {
+        //        debugger;
+        //        if (result.connect == 1) {
+        //            alert("Thành công");
+        //            window.location.assign("/");
+
+
+
+        //        } else {
+        //            alert("Không thành công");
+        //        }
+        //    },
+        //    error: function (errormessage) {
+        //        //$(".login-faild").append("Đăng nhập thất bại")
+        //    }
+        //});
+    }
+</script>

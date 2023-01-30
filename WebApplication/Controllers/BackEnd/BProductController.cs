@@ -13,10 +13,10 @@ namespace WebApplication.Controllers.BackEnd
     {
         // GET: BProduct
         ProductsDB proDB = new ProductsDB();
-
+        AccountController contr = new AccountController();
         public ActionResult Index(string namepage)
         {
-            if (Session["username"] != null)
+            if (Session["username"] != null && contr.CheckUserPass(Session["username"].ToString(), Session["password"].ToString()))
             {
                 ViewData["ActionPage"] = (namepage == null ? "ShowProducts" : namepage);
                 ViewData["Category"] = proDB.ListCategory();
