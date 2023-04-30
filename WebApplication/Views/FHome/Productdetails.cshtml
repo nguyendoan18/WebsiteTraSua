@@ -24,23 +24,27 @@
                             <div class="product-detail-left product-images col-xs-12 col-sm-6 col-md-6 col-lg-6">
                                 <div class="col_large_fix1img large-image">
                                     <input class="hidden" type="text" id="category" value="@Html.DisplayFor(model => model.Id)" />
-                                    <img width="600" height="600" src="/Content/Image_web/@Html.DisplayFor(model => model.image)" class="checkurl img-responsive wp-post-image" alt="Cà phê Americano" sizes="100vw">
+                                    <img id="image_category" width="600" height="600" value="/Content/Image_web/@Html.DisplayFor(model => model.image)" src="/Content/Image_web/@Html.DisplayFor(model => model.image)" class="checkurl img-responsive wp-post-image" alt="Cà phê Americano" sizes="100vw">
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-6 col-md-5 col-lg-5 col-md-offset-1 col-lg-offset-1 details-pro style_product">
                                 <div class="summary-entry-summary">
-                                    <h1 class="product_title entry-title title-product">@Html.DisplayFor(model => model.title)</h1><div class="price-box">
+                                    <h1 id="title_category" class="product_title entry-title title-product">@Html.DisplayFor(model => model.title)</h1><div class="price-box">
                                         <div class="special-price">
-                                            <span class="price product-price"><span class="woocommerce-Price-amount amount"><script> var convertDau =  "@Html.DisplayFor(model => model.price)"; document.write( convertDau.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."))</script>&nbsp;<span class="woocommerce-Price-currencySymbol">₫</span></span></span>
+                                            <span class="price product-price">
+                                                <span id="price_category" class="woocommerce-Price-amount amount">
+                                                    <script> var convertDau =  "@Html.DisplayFor(model => model.price)"; document.write( convertDau.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."))</script>&nbsp;<span class="woocommerce-Price-currencySymbol">₫</span>
+                                                </span>
+                                            </span>
                                         </div>
                                     </div>
-                                    <form class="cart" onsubmit="return false">
+                                    <div class="cart">
                                         <div class="quantity" style="float: left">
                                             <label class="screen-reader-text" for="quantity_6355aa1f7b6f5">@Html.DisplayFor(model => model.title) số lượng</label>
-                                            <input  style="border: 1px solid #e1e1e1; padding: 10px 20px; width: auto; max-width: auto; display: block; " type="number" min="1" max="" id="quantity" value="1" title="SL" size="4" inputmode="numeric">
+                                            <input style="border: 1px solid #e1e1e1; padding: 10px 20px; width: auto; max-width: auto; display: block; " type="number" min="1" max="" id="quantity" value="1" title="SL" size="4" inputmode="numeric">
                                         </div>
-                                        <button style="border: 1px solid #ffd800; background: #ffd800; padding: 10px 20px; width: auto; max-width: auto; display: block;" onclick="return buyCart();">Mua hàng</button>
-                                    </form>
+                                        <button style="border: 1px solid #ffd800; background: #ffd800; padding: 10px 20px; width: auto; max-width: auto; display: block;" onclick="buyCart()">Mua hàng</button>
+                                    </div>
                                     <div style="float:left; width:100%;">
                                         <b class="b_infor">Thông tin:</b>
                                         <section class="product-summary product_description margin-bottom-0">
@@ -60,17 +64,69 @@
 </section>
 
 <script>
-    function buyCart() {
-        console.log("buy cart");
-        $("#count_buycart").append("");
+    // A $( document ).ready() block.
+    $(document).ready(function () {
+        if (localStorage.getItem('count_buycart') == "null" ||
+            localStorage.getItem('count_buycart') == "undefined" ||
+            localStorage.getItem('count_buycart') == "NaN") {
+            var buyCartNumber = 0;
+            localStorage.setItem('count_buycart', 0);
+            $("#count_buycart").html("");
+            $("#count_buycart").append(buyCartNumber);
+            localStorage.setItem('count_buycart', buyCartNumber);
+        } else {
+            var buyCartNumber = localStorage.getItem('count_buycart');
+            $("#count_buycart").html("");
+            $("#count_buycart").append(buyCartNumber);
+            localStorage.setItem('count_buycart', buyCartNumber);
+        }
+    });
+    var CartItems = [];
+    if (localStorage.getItem('CartItems') == "null" ||
+        localStorage.getItem('CartItems') == "undefined" ||
+        localStorage.getItem('CartItems') == "NaN") {
+        CartItems = [];
+        const data = localStorage.getItem("CartItems");
+        for (var i = 0; i < JSON.parse(data).length; i++) {
+            CartItems.push(JSON.parse(data)[i]);
+        }
+    } else {
+        CartItems = [];
+        const data = localStorage.getItem("CartItems");
+        for (var i = 0; i < JSON.parse(data).length; i++) {
+            CartItems.push(JSON.parse(data)[i]);
+        }
+    }
 
-        var empObj = {
-            Id: $('#Id').val(),
+
+    function buyCart() {
+
+        var buyCartNumber = localStorage.getItem('count_buycart');
+        //console.log(buyCartNumber);
+        buyCartNumber = parseInt(buyCartNumber) + 1;
+        $("#count_buycart").html("");
+        $("#count_buycart").append(buyCartNumber);
+        localStorage.setItem('count_buycart', buyCartNumber);
+        var CartItem = {
+            //Id: $('#Id').val(),
             customer: "@Session["username"]",
             category: $('#category').val(),
             quantity: $('#quantity').val(),
+            image_category: document.getElementById('image_category').src,
+            price_category: "@Html.DisplayFor(model => model.price)",
+            title_category: "@Html.DisplayFor(model => model.title)",
         };
-        console.log(empObj);
+        //const data = localStorage.getItem("CartItem");
+        //console.log("data: ", JSON.parse(data));
+
+
+        CartItems.push(CartItem);
+        localStorage.setItem("CartItems", JSON.stringify(CartItems));
+
+        //console.log(CartItems);
+        //localStorage.setItem("CartItems", JSON.stringify(CartItems));
+        //const data = localStorage.getItem("CartItems");
+        //console.log(JSON.parse(data));
 
         //$.ajax({
         //    url: "/FHome/Login",

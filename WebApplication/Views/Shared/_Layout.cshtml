@@ -249,7 +249,10 @@
                                                                 <a class="img_hover_cart" href="/FHome/Cart" title="Giỏ hàng">
                                                                     <div class="icon_hotline visible_index">
                                                                         <i class="fa fa-shopping-bag" aria-hidden="true"></i>
-                                                                        <span id="count_buycart" class="count_item count_item_pr button_gradient">0</span>
+                                                                        <span id="count_buycart" class="count_item count_item_pr button_gradient">
+
+                                                                            0
+                                                                        </span>
                                                                     </div>
                                                                 </a>
                                                             </div>
@@ -367,6 +370,20 @@
     </footer>
     <script src="~/Scripts/MainJS/ScriptFooter.js"></script>
     <script>
+        if (localStorage.getItem('count_buycart') == "null" || localStorage.getItem('count_buycart') == "undefined") {
+            var buyCartNumber = 0;
+            localStorage.setItem('count_buycart', 0);
+            $("#count_buycart").html("");
+            $("#count_buycart").append(buyCartNumber);
+            localStorage.setItem('count_buycart', buyCartNumber);
+        } else {
+            var buyCartNumber = localStorage.getItem('count_buycart');
+            $("#count_buycart").html("");
+            $("#count_buycart").append(buyCartNumber);
+            localStorage.setItem('count_buycart', buyCartNumber);
+        }
+       
+
         $(document).ready(function () {
             if ("@Session["username"]" == null || "@Session["username"]" == "" ) {
                 $('.welcome_text').addClass("hidden");

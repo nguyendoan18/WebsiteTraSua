@@ -50,6 +50,10 @@ namespace WebApplication.Controllers.FontEnd
         {
             return View();
         }
+        public ActionResult ConductingPayment()
+        {
+            return View();
+        }
         public JsonResult List()
         {
             return Json(proDB.ListAll(), JsonRequestBehavior.AllowGet);

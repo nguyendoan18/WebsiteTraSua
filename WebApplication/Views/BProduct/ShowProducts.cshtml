@@ -69,7 +69,7 @@
                     html += `<tr>
                                 <td>${key + 1}</td>
                                 <td><input class="form-control" type="text" id="${"title"}${item.Id}" value="${item.title}" /></td>
-                                <td><textarea class="form-control" id="${"description"}${item.Id}" rows="4" cols="auto">${item.description}</textarea>
+                                <td><textarea class="form-control" id="${"description"}${item.Id}" rows="4" cols="50">${item.description}</textarea>
                                 </td>
                                 <td><input class="form-control" type="text" id="${"price"}${item.Id}" value="${item.price}" /></td>
                                 <td>
@@ -85,10 +85,10 @@
                         else html += '<option value="' + itemCombo.code + '">' + itemCombo.title + '</option>';
                     });
 
-                    html += `</select>
-                                    </td>
-                                    <td><button class="btn btn-success" onclick="return Update(${item.Id})" >Cập nhật</button></td>
-                                </tr>`;
+                    //html += `</select>
+                    //                </td>
+                    //                <td><button class="btn btn-success" onclick="return Update(${item.Id})" >Cập nhật</button></td>
+                    //            </tr>`;
                 });
                 ///*<input class="form-control" type="text" id="${"category"}${item.Id}" value="${item.category}" />*/
                 $('._RenderItem').html(html);
