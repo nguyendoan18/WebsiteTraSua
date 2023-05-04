@@ -62,6 +62,17 @@
         </main>
     </div>
 </section>
+<head>
+    <script src="~/Content/Notify/jquery.min.js"></script>
+    <script src="~/Content/Notify/notify.min.js"></script>
+    <link rel="stylesheet" href="~/Content/Notify/notify-metro.css" />
+
+    <script type="text/javascript">
+        function notify() {
+            $.notify("Đã thêm vào giỏ hàng", "success");
+        }
+    </script>
+</head>
 
 <script>
     // A $( document ).ready() block.
@@ -100,7 +111,7 @@
 
 
     function buyCart() {
-
+        $.notify("Đã thêm vào giỏ hàng", "success");
         var buyCartNumber = localStorage.getItem('count_buycart');
         //console.log(buyCartNumber);
         buyCartNumber = parseInt(buyCartNumber) + 1;
@@ -110,10 +121,10 @@
         var CartItem = {
             //Id: $('#Id').val(),
             customer: "@Session["username"]",
-            category: $('#category').val(),
-            quantity: $('#quantity').val(),
+            Id_product: $('#category').val(),
+            Quantity: $('#quantity').val(),
             image_category: document.getElementById('image_category').src,
-            price_category: "@Html.DisplayFor(model => model.price)",
+            Price: "@Html.DisplayFor(model => model.price)",
             title_category: "@Html.DisplayFor(model => model.title)",
         };
         //const data = localStorage.getItem("CartItem");

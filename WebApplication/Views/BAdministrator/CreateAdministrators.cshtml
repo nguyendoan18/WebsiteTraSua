@@ -40,11 +40,15 @@
     </div>
     <!-- / Layout page -->
     <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <script src="~/Content/Notify/jquery.min.js"></script>
+    <script src="~/Content/Notify/notify.min.js"></script>
+    <link rel="stylesheet" href="~/Content/Notify/notify-metro.css" />
     <script>
         //Add Data Function
         $(".Account").addClass("open");
         $('.CreateAdministrators').addClass("active");
         function Add() {
+            jQuery.noConflict();
             var res = validate();
             if (res == false) {
                 return false;
@@ -62,11 +66,13 @@
                 success: function (result) {
                     debugger;
                     if (result = 1) {
-                        alert("Thành công");
+                        $.notify("Tạo mới thành công", "success");
+                        $(".notifyjs-corner").css("z-index", "2000000");
                         $('#username').val('');
                         $('#password').val('');
                     } else {
-                        alert("Khoog thành công");
+                        $.notify("Tạo mới không thành công", "success");
+                        $(".notifyjs-corner").css("z-index", "2000000");
                     }
                 },
                 error: function (errormessage) {
@@ -75,7 +81,7 @@
             });
         }
 
-        //Valdidation using jquery  
+        //Valdidation using jquery
         function validate() {
             var isValid = true;
             if ($('#username').val().trim() == "") {

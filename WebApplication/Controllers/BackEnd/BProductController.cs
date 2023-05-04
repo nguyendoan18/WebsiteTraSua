@@ -39,7 +39,7 @@ namespace WebApplication.Controllers.BackEnd
                 title = product.title,
                 description = product.description,
                 price = product.price,
-                image = (image == null ? "" : image.FileName),
+                image = product.image,
                 category = product.category
             }), JsonRequestBehavior.AllowGet);
         }
@@ -53,7 +53,7 @@ namespace WebApplication.Controllers.BackEnd
                 title = product.title,
                 description = product.description,
                 price = product.price,
-                image = (image == null ? "" : image.FileName),
+                image =  product.image,
                 category = product.category
             }), JsonRequestBehavior.AllowGet);
         }

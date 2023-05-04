@@ -41,60 +41,64 @@
 
     </section><!-- #site-main-hl -->
 </section>
-
 <script src="~/Scripts/jquery-3.4.1.js"></script>
+<script src="~/Content/Notify/jquery.min.js"></script>
+<script src="~/Content/Notify/notify.min.js"></script>
+<link rel="stylesheet" href="~/Content/Notify/notify-metro.css" />
+<script type="text/javascript">
+    function notify() {
+        $.notify("Đăng nhập thành công", "success");
+    }
+</script>
 <script>
-        //Add Data Function
-        function Login() {
-            var res = validate();
-            if (res == false) {
-                return false;
-            }
-            var empObj = {
-                username: $('#username').val(),
-                password: $('#password').val(),
-            };
-            $.ajax({
-                url: "/FHome/Login",
-                data: JSON.stringify(empObj),
-                type: "POST",
-                contentType: "application/json;charset=utf-8",
-                dataType: "json",
-                success: function (result) {
-                    debugger;
-                    if (result.connect == 1) {
-                        alert("Thành công");
-                        window.location.assign("/");
-                        
-                        
-
-                    } else {
-                        alert("Không thành công");
-                    }
-                },
-                error: function (errormessage) {
-                    //$(".login-faild").append("Đăng nhập thất bại")
+    //Add Data Function
+    function Login() {
+        var res = validate();
+        if (res == false) {
+            return false;
+        }
+        var empObj = {
+            username: $('#username').val(),
+            password: $('#password').val(),
+        };
+        $.ajax({
+            url: "/FHome/Login",
+            data: JSON.stringify(empObj),
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                debugger;
+                if (result.connect == 1) {
+                    $.notify("Đăng nhập thành công", "success");
+                    setInterval(() => window.location.assign("/"), 1000);
+                } else {
+                    $.notify("Đăng nhập không thành công", "success");
                 }
-            });
-        }
+            },
+            error: function (errormessage) {
+                //$(".login-faild").append("Đăng nhập thất bại")
+            }
+        });
+    }
 
-        //Valdidation using jquery
-        function validate() {
-            var isValid = true;
-            if ($('#username').val().trim() == "") {
-                $('#username').css('border-color', 'Red');
-                isValid = false;
-            }
-            else {
-                $('#username').css('border-color', 'lightgrey');
-            }
-            if ($('#password').val().trim() == "") {
-                $('#password').css('border-color', 'Red');
-                isValid = false;
-            }
-            else {
-                $('#password').css('border-color', 'lightgrey');
-            }
-            return isValid;
+    //Valdidation using jquery
+    function validate() {
+        var isValid = true;
+        if ($('#username').val().trim() == "") {
+            $('#username').css('border-color', 'Red');
+            isValid = false;
         }
+        else {
+            $('#username').css('border-color', 'lightgrey');
+        }
+        if ($('#password').val().trim() == "") {
+            $('#password').css('border-color', 'Red');
+            isValid = false;
+        }
+        else {
+            $('#password').css('border-color', 'lightgrey');
+        }
+        return isValid;
+    }
 </script>

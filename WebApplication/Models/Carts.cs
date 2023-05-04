@@ -7,10 +7,10 @@ namespace WebApplication.Models
 {
     public class Carts
     {
-        public int Id { get; set; }
-        public string customer { get; set; }
-        public string category { get; set; }
-        public int quantity { get; set; }
-        public DateTime datetime { get; set; }
+        public int Id_cart { get; set; }
+        public string Id_order { get; set; }
+        public string Id_product { get; set; }
+        public int Price { get; set; }
+        public int Quantity { get; set; }
     }
 }

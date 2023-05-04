@@ -33,7 +33,9 @@
 </div>
 <!-- / Layout page -->
 <script src="~/Scripts/jquery-3.4.1.js"></script>
-
+<script src="~/Content/Notify/jquery.min.js"></script>
+<script src="~/Content/Notify/notify.min.js"></script>
+<link rel="stylesheet" href="~/Content/Notify/notify-metro.css" />
 <script>
     var OptionCombox = [];
     $(document).ready(function () {
@@ -62,7 +64,7 @@
                                 <td>
                                 <img style="width: 50%;" class="form-control" id="${"image"}${item.Id}" src="/Content/Image_web/${item.image}" />
                                 </td>
-                                <td><input class="form-control" type="file" id="${"imagefile"}${item.Id}"/></td>
+                                <td><input class="form-control" type="text" id="${"imagefile"}${item.Id}"/></td>
                                 <td>
                                             <select class="form-select" id="${"category"}${item.Id}" aria-label="Default select example">
                                 `;
@@ -92,11 +94,13 @@
         //if (res == false) {
         //    return false;
         //}
+        jQuery.noConflict();
         var title = $('#title' + Id).val();
         var description = $('#description' + Id).val();
         var price = $('#price' + Id).val();
-        var fileUpload = $('#imagefile' + Id).get(0);
-        var files = fileUpload.files;
+        //var fileUpload = $('#imagefile' + Id).get(0);
+        var image = $('#imagefile' + Id).val();
+        //var files = fileUpload.files;
         //var image = files[0];
 
         var category = $('#category' + Id).val();
@@ -113,7 +117,9 @@
         formData.append('title', title);
         formData.append('description', description);
         formData.append('price', price);
-        formData.append('image', files[0]);
+        //formData.append('image', files[0]);
+        formData.append('image', image);
+
         formData.append('category', category);
 
         $.ajax({
@@ -132,9 +138,11 @@
                 debugger;
                 loadData();
                 if (result = 1) {
-                    alert("Thành công");
+                    $.notify("Cập nhật thành công", "success");
+                    $(".notifyjs-corner").css("z-index", "2000000");
                 } else {
-                    alert("Không thành công");
+                    $.notify("Cập nhật không thành công", "success");
+                    $(".notifyjs-corner").css("z-index", "2000000");
                 }
             },
             error: function (errormessage) {

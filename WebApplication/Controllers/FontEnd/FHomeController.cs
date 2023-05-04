@@ -13,7 +13,7 @@ namespace WebApplication.Controllers.FontEnd
         // GET: FHome
         ProductsDB proDB = new ProductsDB();
         CustomersDB cusDB = new CustomersDB();
-
+        OrderPaymentDB orderDB = new OrderPaymentDB();
         public ActionResult Index()
         {
             return View();
@@ -54,6 +54,24 @@ namespace WebApplication.Controllers.FontEnd
         {
             return View();
         }
+        public ActionResult OrderLookup()
+        {
+            return View();
+        }
+        [HttpGet]
+        public ActionResult PaymentSuccess(string Id_order)
+        {
+            var order = orderDB.ListAll().Where(x => x.IdCustomer.Equals(Id_order));
+            return View(order);
+        }
+        [HttpGet]
+        public ActionResult SearchProducts(string search)
+        {
+            ViewData["search"] = search;
+            var order = proDB.SearchProducts(search);
+            return View(order);
+            //return View();
+        }
         public JsonResult List()
         {
             return Json(proDB.ListAll(), JsonRequestBehavior.AllowGet);
@@ -68,6 +86,14 @@ namespace WebApplication.Controllers.FontEnd
         public JsonResult CreateCustomers(Users user)
         {
             return Json(cusDB.Add(user), JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        public JsonResult BuyPayment(OrderPayment order, List<Carts> carts)
+        {
+            OrderPayment orderPayment = order;
+            List<Carts> cartPayment = carts;
+            int i;
+            return Json(new { Id_order = orderDB.Add(orderPayment, cartPayment, out int succes), succes = succes }, JsonRequestBehavior.AllowGet); ;
         }
 
         [HttpPost]

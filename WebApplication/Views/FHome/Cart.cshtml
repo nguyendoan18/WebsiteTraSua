@@ -71,41 +71,78 @@
 
     </section><!-- #site-main-hl -->
 </section>
+<script src="~/Content/Notify/jquery.min.js"></script>
+<script src="~/Content/Notify/notify.min.js"></script>
+<link rel="stylesheet" href="~/Content/Notify/notify-metro.css" />
 
+<script type="text/javascript">
+    function notify() {
+        $.notify("Đã thêm vào giỏ hàng", "success");
+    }
+</script>
 <script>
-    const data = localStorage.getItem("CartItems");
-    var html = '';
-    var total = 0;
-    $.each(JSON.parse(data), function (key, item) {
-        html += `
+    function Loaddata() {
+        const data = localStorage.getItem("CartItems");
+        var html = '';
+        var total = 0;
+        var i = 0;
+        $.each(JSON.parse(data), function (key, item) {
+
+            html += `
                 <tr class="woocommerce-cart-form__cart-item cart_item">
                     <td class="product-remove">
-                        <a href=";_wpnonce=dc8f3845e6" class="remove" aria-label="Xóa sản phẩm này" data-product_sku="">×</a>
+                        <a onclick="RemoveCartItem(${i})" href="#" class="remove" aria-label="Xóa sản phẩm này" data-product_sku="">×</a>
                     </td>
                     <td class="product-thumbnail">
-                        <a href="Productdetails/${item.category}"><img width="300" height="300" src="${item.image_category}" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt=""></a>
+                        <a href="Productdetails/${item.Id_product}"><img width="300" height="300" src="${item.image_category}" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt=""></a>
                     </td>
                     <td class="product-name" data-title="Sản phẩm">
-                        <a href="Productdetails/${item.category}">${item.title_category}</a>
+                        <a href="Productdetails/${item.Id_product}">${item.title_category}</a>
                     </td>
                     <td class="product-price" data-title="Giá">
-                        <span class="woocommerce-Price-amount amount">${item.price_category.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") }&nbsp;<span class="woocommerce-Price-currencySymbol">₫</span></span>
+                        <span class="woocommerce-Price-amount amount">${item.Price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}&nbsp;<span class="woocommerce-Price-currencySymbol">₫</span></span>
                     </td>
                     <td class="product-quantity" data-title="Số lượng">
                         <div class="quantity">
-                            <span for="quantity_6355aabb00d33">${item.quantity}</span>
+                            <span for="quantity_6355aabb00d33">${item.Quantity}</span>
                         </div>
                     </td>
                     <td class="product-subtotal" data-title="Tạm tính">
-                        <span class="woocommerce-Price-amount amount">${(item.price_category * item.quantity).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") }&nbsp;<span class="woocommerce-Price-currencySymbol">₫</span></span>
+                        <span class="woocommerce-Price-amount amount">${(item.Price * item.Quantity).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}&nbsp;<span class="woocommerce-Price-currencySymbol">₫</span></span>
                     </td>
                 </tr>
         `;
-        total += item.price_category * item.quantity;
-    });
+            total += item.Price * item.Quantity;
+            i = i + 1;
+        });
 
-    $('._RenderItem').html(html);
-    $('#tinhtam').html(total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."));
-    $('#tinhtong').html(total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."));
-    
+        $('._RenderItem').html(html);
+        $('#tinhtam').html(total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."));
+        $('#tinhtong').html(total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."));
+
+        var buyCartNumber = localStorage.getItem('count_buycart');
+        console.log(buyCartNumber);
+        if (buyCartNumber == 0) {
+            $('.wc-proceed-to-checkout').css('visibility', 'hidden');
+        }
+    }
+
+    Loaddata();
+
+    function RemoveCartItem(id) {
+        $.notify("Đã xóa sản phẩm ra giỏ hàng", "success");
+        const data = localStorage.getItem("CartItems");
+        var removeCart = JSON.parse(data);
+        removeCart.splice(id, 1);
+
+        var buyCartNumber = localStorage.getItem('count_buycart');
+        buyCartNumber = parseInt(buyCartNumber) - 1;
+        $("#count_buycart").html("");
+        $("#count_buycart").append(buyCartNumber);
+        localStorage.setItem('count_buycart', buyCartNumber);
+
+        localStorage.setItem("CartItems", JSON.stringify(removeCart));
+        Loaddata();
+
+    }
 </script>

@@ -307,10 +307,10 @@
                                     <span class="password-input"></span><input class="woocommerce-Input woocommerce-Input--text input-text" type="password" name="password" id="password" autocomplete="current-password"></span>
                                 </p>
                                 <p class="login-faild text-center" style="color: red">
-                                    
+
                                 </p>
                                 <p class="form-row text-center">
-                                    <button class="btn btn-primary" onclick="return Login();" >Đăng nhập</button>
+                                    <button class="btn btn-primary" onclick="return Login();">Đăng nhập</button>
                                 </p>
                                 <p class="woocommerce-LostPassword lost_password">
                                     <a href="/tai-khoan/lost-password/">Quên mật khẩu?</a>
@@ -394,6 +394,14 @@
     </footer>
     @*<script src="~/Scripts/MainJS/ScriptFooter.js"></script>*@
     <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <script src="~/Content/Notify/jquery.min.js"></script>
+    <script src="~/Content/Notify/notify.min.js"></script>
+    <link rel="stylesheet" href="~/Content/Notify/notify-metro.css" />
+    <script type="text/javascript">
+        function notify() {
+            $.notify("Đăng nhập thành công", "success");
+        }
+    </script>
     <script>
         //Add Data Function
         function Login() {
@@ -414,11 +422,10 @@
                 success: function (result) {
                     debugger;
                     if (result.connect == 1) {
-                        alert("Thành công");
-                        window.location.assign("/BAdministrator");
+                        $.notify("Đăng nhập thành công", "success");
+                        setInterval(() => window.location.assign("/BAdministrator"), 1000);
                     } else {
-                        alert("Không thành công");
-                        window.location.assign("/BAdministrator");
+                        $.notify("Đăng nhập không thành công", "success");
                     }
                 },
                 error: function (errormessage) {

@@ -35,7 +35,7 @@
                         </div>
                         <div class="col-md-6">
                             <label for="defaultFormControlInput" class="form-label">Hình sản phẩm</label>
-                            <input type="file"
+                            <input type="text"
                                    class="form-control"
                                    id="image"
                                    placeholder=""
@@ -50,7 +50,6 @@
                                 placeholder="******"
                                 aria-describedby="defaultFormControlHelp" />*@
                             <select class="form-select" id="category" aria-label="Default select example">
-                                
                             </select>
                         </div>
                     </div>
@@ -66,25 +65,32 @@
     <!-- / Layout page -->
     <script src="~/Scripts/jquery-3.4.1.js"></script>
     <script src="~/Scripts/MainJS/Function_All.js"></script>
+
+    <script src="~/Content/Notify/jquery.min.js"></script>
+    <script src="~/Content/Notify/notify.min.js"></script>
+    <link rel="stylesheet" href="~/Content/Notify/notify-metro.css" />
     <script>
         $(".Products").addClass("open");
         $('.CreateProducts').addClass("active");
         //Add Data Function
         function Add() {
+            jQuery.noConflict();
+
             var res = validate();
             if (res == false) {
                 return false;
             }
 
-            var fileUpload = $('#image').get(0);
-            var files = fileUpload.files;
+            //var fileUpload = $('#image').get(0);
+            //var files = fileUpload.files;
             var codeproducts = removeAccents($('#title').val());
             var formData = new FormData();
             formData.append('codeproducts', codeproducts);
             formData.append('title', $('#title').val());
             formData.append('description', $('#description').val());
             formData.append('price', $('#price').val());
-            formData.append('image', files[0]);
+            formData.append('image', $('#image').val());
+            //formData.append('image', files[0]);
             formData.append('category', $('#category').val());
             $.ajax({
                 type: "POST",
@@ -96,14 +102,16 @@
                 success: function (result) {
                     debugger;
                     if (result = 1) {
-                        alert("Thành công");
+                        $.notify("Tạo mới thành công", "success");
+                        $(".notifyjs-corner").css("z-index", "2000000");
                         $('#title').val('');
                         $('#description').val('');
                         $('#price').val('');
                         $('#image').val('');
                         $('#category').val('');
                     } else {
-                        alert("Khoog thành công");
+                        $.notify("Tạo mới không thành công", "success");
+                        $(".notifyjs-corner").css("z-index", "2000000");
                     }
                 },
                 error: function (errormessage) {

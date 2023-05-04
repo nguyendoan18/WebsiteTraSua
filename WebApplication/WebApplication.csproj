@@ -124,10 +124,12 @@
     <Compile Include="BackEnd\ProductsDB.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BackEnd\BAdministratorController.cs" />
+    <Compile Include="Controllers\BackEnd\BOrderController.cs" />
     <Compile Include="Controllers\BackEnd\BProductController.cs" />
     <Compile Include="Controllers\FontEnd\FHomeController.cs" />
     <Compile Include="FontEnd\CartsDB.cs" />
     <Compile Include="FontEnd\CustomersDB.cs" />
+    <Compile Include="FontEnd\OrderPaymentDB.cs" />
     <Compile Include="FontEnd\ProductsDB.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -135,6 +137,7 @@
     <Compile Include="Models\Carts.cs" />
     <Compile Include="Models\Categorys.cs" />
     <Compile Include="Models\Connection.cs" />
+    <Compile Include="Models\OrderPayment.cs" />
     <Compile Include="Models\Products.cs" />
     <Compile Include="Models\Users.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -304,6 +307,9 @@
     <Content Include="Content\js\ui-modals.js" />
     <Content Include="Content\js\ui-popover.js" />
     <Content Include="Content\js\ui-toasts.js" />
+    <Content Include="Content\Notify\jquery.min.js" />
+    <Content Include="Content\Notify\notify-metro.css" />
+    <Content Include="Content\Notify\notify.min.js" />
     <Content Include="Content\vendor\css\core.css" />
     <Content Include="Content\vendor\css\pages\page-account-settings.css" />
     <Content Include="Content\vendor\css\pages\page-auth.css" />
@@ -435,6 +441,15 @@
     <Content Include="Views\FHome\Login00.cshtml" />
     <Content Include="Views\Shared\_Layout - Copy.cshtml" />
     <Content Include="Views\FHome\ConductingPayment.cshtml" />
+    <Content Include="Views\FHome\PaymentSuccess.cshtml" />
+    <Content Include="Views\BOrder\Index.cshtml" />
+    <Content Include="Views\BOrder\Pending.cshtml" />
+    <Content Include="Views\BOrder\Approved.cshtml" />
+    <Content Include="Views\BOrder\Delivered.cshtml" />
+    <Content Include="Views\BOrder\Refuse.cshtml" />
+    <Content Include="Views\BOrder\ShowOrderDetails.cshtml" />
+    <Content Include="Views\FHome\SearchProducts.cshtml" />
+    <Content Include="Views\FHome\OrderLookup.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Account\" />

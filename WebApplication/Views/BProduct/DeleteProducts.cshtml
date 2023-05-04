@@ -31,6 +31,9 @@
 <!-- / Layout page -->
 <script src="~/Scripts/jquery-3.4.1.js"></script>
 
+<script src="~/Content/Notify/jquery.min.js"></script>
+<script src="~/Content/Notify/notify.min.js"></script>
+<link rel="stylesheet" href="~/Content/Notify/notify-metro.css" />
 <script>
     $(document).ready(function () {
         loadData();
@@ -49,12 +52,12 @@
                 var html = '';
                 $.each(result, function (key, item) {
                     html += `<tr>
-                            <td>${key+1}</td>
+                            <td>${key + 1}</td>
                             <td><input class="form-control" type="text" id="${"title"}${item.Id}" value="${item.title}" /></td>
                             <td><textarea class="form-control" id="${"description"}${item.Id}" rows="4" cols="auto">${item.description}</textarea>
                             </td>
                             <td><input class="form-control" type="text" id="${"price"}${item.Id}" value="${item.price}" /></td>
-                            <td><input class="form-control" type="image" id="${"image"}${item.Id}" src="/Content/Image_web/${item.image}" /></td>
+                            <td><input style="width: 50%;" class="form-control" type="image" id="${"image"}${item.Id}" src="/Content/Image_web/${item.image}" /></td>
                             <td><button class="btn btn-danger" onclick="return Delete(${item.Id})" >Xóa bỏ</button></td>
                         </tr>`;
                 });
@@ -70,8 +73,9 @@
         //if (res == false) {
         //    return false;
         //}
+        jQuery.noConflict();
         $.ajax({
-            url: "/BProduct/DeleteProduct/" + Id,
+            url: "/BProduct/DeleteProduct/?Id=" + Id,
             type: "GET",
             contentType: "application/json;charset=utf-8",
             dataType: "json",
@@ -80,9 +84,11 @@
                 loadData();
 
                 if (result = 1) {
-                    alert("Thành công");
+                    $.notify("Xóa thành công", "success");
+                    $(".notifyjs-corner").css("z-index", "2000000");
                 } else {
-                    alert("Không thành công");
+                    $.notify("Xóa không thành công", "success");
+                    $(".notifyjs-corner").css("z-index", "2000000");
                 }
 
             },

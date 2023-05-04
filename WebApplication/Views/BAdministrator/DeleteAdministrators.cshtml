@@ -18,7 +18,6 @@
                         </tr>
                     </thead>
                     <tbody class=" _RenderItem table-border-bottom-0">
-                        
                     </tbody>
                 </table>
             </div>
@@ -30,6 +29,9 @@
 </div>
 <!-- / Layout page -->
 <script src="~/Scripts/jquery-3.4.1.js"></script>
+<script src="~/Content/Notify/jquery.min.js"></script>
+<script src="~/Content/Notify/notify.min.js"></script>
+<link rel="stylesheet" href="~/Content/Notify/notify-metro.css" />
 
 <script>
     $(document).ready(function () {
@@ -38,7 +40,7 @@
         $('.DeleteAdministrators').addClass("active");
     });
 
-    //Load Data function  
+    //Load Data function
     function loadData() {
         $.ajax({
             url: "/BAdministrator/ListAdministrators",
@@ -49,7 +51,7 @@
                 var html = '';
                 $.each(result, function (key, item) {
                     html += `<tr>
-                            <td>${key+1}</td>
+                            <td>${key + 1}</td>
                             <td><input class="form-control" type="text" id="${"username"}${item.Id}" value="${item.username}" /></td>
                             <td><input class="form-control" type="password" id="${"password"}${item.Id}" value="${item.password}" /></td>
                             <td><button class="btn btn-danger" onclick="return Delete(${item.Id})" >Xóa bỏ</button></td>
@@ -62,14 +64,15 @@
             }
         });
     }
-    //Add Data Function   
+    //Add Data Function
     function Delete(Id) {
         //var res = validate();
         //if (res == false) {
         //    return false;
         //}
+        jQuery.noConflict();
         $.ajax({
-            url: "/BAdministrator/DeleteAdministrators/"+Id,
+            url: "/BAdministrator/DeleteAdministrators/" + Id,
             type: "GET",
             contentType: "application/json;charset=utf-8",
             dataType: "json",
@@ -78,9 +81,11 @@
                 loadData();
 
                 if (result = 1) {
-                    alert("Thành công");
+                    $.notify("Xóa thành công", "success");
+                    $(".notifyjs-corner").css("z-index", "2000000");
                 } else {
-                    alert("Không thành công");
+                    $.notify("Xóa không thành công", "success");
+                    $(".notifyjs-corner").css("z-index", "2000000");
                 }
 
             },
