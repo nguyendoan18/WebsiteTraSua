@@ -94,12 +94,20 @@
         //if (res == false) {
         //    return false;
         //}
+        debugger
         jQuery.noConflict();
         var title = $('#title' + Id).val();
         var description = $('#description' + Id).val();
         var price = $('#price' + Id).val();
-        //var fileUpload = $('#imagefile' + Id).get(0);
+        //var fileUpload = $('#imagefile' + Id).get(0); $('#billing_last_name').val().trim() == ""
         var image = $('#imagefile' + Id).val();
+
+        if ($('#imagefile' + Id).val().trim() == "") {
+            image = $('#image' + Id)[0].currentSrc.split('https://localhost:44363/Content/Image_web/')[1];
+        }
+        else {
+            image = $('#imagefile' + Id).val();
+        }
         //var files = fileUpload.files;
         //var image = files[0];
 

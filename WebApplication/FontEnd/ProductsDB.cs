@@ -45,9 +45,40 @@ namespace WebApplication.FontEnd
             using (SqlConnection con = new SqlConnection(Connection.strConnect))
             {
                 con.Open();
+                //        string sql = $@"select pro.Id, pro.codeproducts, pro.title, pro.description, pro.price, pro.image, cat.codecategory as category 
+                //from products pro INNER JOIN categorys cat ON pro.category = cat.codecategory
+                //where pro.title Like N'%{search}%'";
                 string sql = $@"select pro.Id, pro.codeproducts, pro.title, pro.description, pro.price, pro.image, cat.codecategory as category 
         from products pro INNER JOIN categorys cat ON pro.category = cat.codecategory
-        where pro.title Like N'%{search}%'";
+        where pro.description Like N'%{search}%'";
+                SqlCommand com = new SqlCommand(sql, con);
+                //com.CommandType = CommandType.StoredProcedure;
+                //com.Parameters.AddWithValue("@title", search);
+                SqlDataReader rdr = com.ExecuteReader();
+                while (rdr.Read())
+                {
+                    lst.Add(new Products
+                    {
+                        Id = Convert.ToInt32(rdr["Id"]),
+                        codeproducts = rdr["codeproducts"].ToString(),
+                        title = rdr["title"].ToString(),
+                        description = rdr["description"].ToString(),
+                        price = Convert.ToInt64(rdr["price"]),
+                        image = rdr["image"].ToString(),
+                    });
+                }
+                return lst;
+            }
+        }
+        public List<Products> ProductType(string ProductType)
+        {
+            List<Products> lst = new List<Products>();
+            using (SqlConnection con = new SqlConnection(Connection.strConnect))
+            {
+                con.Open();
+                string sql = $@"select pro.Id, pro.codeproducts, pro.title, pro.description, pro.price, pro.image, cat.codecategory as category 
+        from products pro INNER JOIN categorys cat ON pro.category = cat.codecategory
+        where pro.category = N'{ProductType}'";
                 SqlCommand com = new SqlCommand(sql, con);
                 //com.CommandType = CommandType.StoredProcedure;
                 //com.Parameters.AddWithValue("@title", search);

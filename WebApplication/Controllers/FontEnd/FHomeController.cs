@@ -72,6 +72,14 @@ namespace WebApplication.Controllers.FontEnd
             return View(order);
             //return View();
         }
+        [HttpGet]
+        public ActionResult ProductType(string ProductType)
+        {
+            ViewData["search"] = ProductType;
+            var order = proDB.ProductType(ProductType);
+            return View(order);
+            //return View();
+        }
         public JsonResult List()
         {
             return Json(proDB.ListAll(), JsonRequestBehavior.AllowGet);

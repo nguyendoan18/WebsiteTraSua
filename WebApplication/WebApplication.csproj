@@ -253,6 +253,31 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\css\demo.css" />
     <Content Include="Content\Image_web\logo-dsnguyen.png" />
+    <Content Include="Content\Image_web\tra-sua-001.jpg" />
+    <Content Include="Content\Image_web\tra-sua-0010.jpg" />
+    <Content Include="Content\Image_web\tra-sua-0011.jpg" />
+    <Content Include="Content\Image_web\tra-sua-0012.jpg" />
+    <Content Include="Content\Image_web\tra-sua-0013.jpg" />
+    <Content Include="Content\Image_web\tra-sua-0014.jpg" />
+    <Content Include="Content\Image_web\tra-sua-002.jpg" />
+    <Content Include="Content\Image_web\tra-sua-003.jpg" />
+    <Content Include="Content\Image_web\tra-sua-004.jpg" />
+    <Content Include="Content\Image_web\tra-sua-005.jpg" />
+    <Content Include="Content\Image_web\tra-sua-006.jpg" />
+    <Content Include="Content\Image_web\tra-sua-008.png" />
+    <Content Include="Content\Image_web\tra-sua-009.jpg" />
+    <Content Include="Content\Image_web\tra-sua-tran-chau-1200x1370.jpg" />
+    <Content Include="Content\Image_web\tra-sua-tran-chau-duong-den-500.jpg" />
+    <Content Include="Content\Image_web\tra-sua-tran-chau.jpg" />
+    <Content Include="Content\Image_web\Trà sữa full topping.jpg" />
+    <Content Include="Content\Image_web\trà sữa match.jpg" />
+    <Content Include="Content\Image_web\trà sữa ping match.jpg" />
+    <Content Include="Content\Image_web\Trà sữa tiramisu kem.jpg" />
+    <Content Include="Content\Image_web\Trà sữa truyền thống full topping.jpg" />
+    <Content Include="Content\Image_web\Trà sữa truyền thống.jpg" />
+    <Content Include="Content\Image_web\trà sữa trà xanh.jpg" />
+    <Content Include="Content\Image_web\Trà sữa ô long 01.jpg" />
+    <Content Include="Content\Image_web\trà sữa đặt biệt.jpg" />
     <Content Include="Content\Image_web\user-image.png" />
     <Content Include="Content\img\avatars\1.png" />
     <Content Include="Content\img\avatars\5.png" />
@@ -450,6 +475,7 @@
     <Content Include="Views\BOrder\ShowOrderDetails.cshtml" />
     <Content Include="Views\FHome\SearchProducts.cshtml" />
     <Content Include="Views\FHome\OrderLookup.cshtml" />
+    <Content Include="Views\FHome\ProductType.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Account\" />
